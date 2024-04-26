@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Episode, episodeData } from "@/db/episodes";
 
 export default function List() {
@@ -11,9 +10,6 @@ export default function List() {
 
   return (
     <main className={styles.main}>
-      <div onClick={() => router.back()} className={styles.backButton}>
-        <ArrowBackIosIcon fontSize="large" />
-      </div>
       <div className={styles.container}>
         <h1>Season 1</h1>
         <div className={styles.list}>
