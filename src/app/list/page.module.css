@@ -24,6 +24,10 @@
 
 .list {
   margin-top: 2rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .episode {
