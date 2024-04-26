@@ -14,4 +14,8 @@
   border: solid 1px;
   border-radius: 1rem;
   padding: 1rem 2rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
