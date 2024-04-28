@@ -1,0 +1,40 @@
+.main {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.index {
+  font-size: 1.2rem;
+  margin-bottom: 4rem;
+}
+
+.en {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.ko {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+.buttonWrapper {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rem;
+}
+
+.prevNextButton {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 1px solid;
+  padding: 0.7rem 1.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}

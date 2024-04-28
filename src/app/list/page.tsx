@@ -9,21 +9,19 @@ export default function List() {
   const episodes: Episode[] = episodeData;
 
   return (
-    <main className={styles.main}>
-      <div className={styles.container}>
-        <h1>Season 1</h1>
-        <div className={styles.list}>
-          {episodes.map((episode) => (
-            <p
-              key={episode.index}
-              onClick={() => router.push(`list/${episode.index}`)}
-              className={styles.episode}
-            >
-              Episode {episode.index}: {episode.title}
-            </p>
-          ))}
-        </div>
+    <div className={styles.container}>
+      <h1>Season 1</h1>
+      <div className={styles.list}>
+        {episodes.map((episode) => (
+          <p
+            key={episode.index}
+            onClick={() => router.push(`list/${episode.index}`)}
+            className={styles.episode}
+          >
+            Episode {episode.index}: {episode.title}
+          </p>
+        ))}
       </div>
-    </main>
+    </div>
   );
 }
