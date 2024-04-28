@@ -38,3 +38,12 @@
   border-radius: 1rem;
   cursor: pointer;
 }
+
+.exWrapper {
+  margin-top: 3rem;
+}
+
+.exTitle {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
