@@ -15,7 +15,12 @@ export default function Episode({ params }: { params: { episode: number } }) {
       >
         ✍️ 주요 표현 공부하기
       </p>
-      <p className={styles.element}>💯 Quiz</p>
+      <p
+        className={styles.element}
+        onClick={() => router.push(`${params.episode}/quiz`)}
+      >
+        💯 Quiz
+      </p>
     </div>
   );
 }
