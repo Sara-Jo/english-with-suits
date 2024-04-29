@@ -33,14 +33,19 @@ export default function Expressions() {
       <div className={styles.index}>
         {currentIndex + 1} / {expLength}
       </div>
-      <p className={styles.en}>{currentExpression.en}</p>
-      <p className={styles.ko}>{currentExpression.ko}</p>
-      {currentExpression.ex && (
-        <div className={styles.exWrapper}>
-          <p className={styles.exTitle}>💬 Ex</p>
-          <p>{currentExpression.ex}</p>
+      <div className={styles.upperWrapper}>
+        <div className={styles.expressionWrapper}>
+          <p className={styles.en}>{currentExpression.en}</p>
+          <p className={styles.ko}>{currentExpression.ko}</p>
         </div>
-      )}
+
+        {currentExpression.ex && (
+          <div className={styles.exWrapper}>
+            <p className={styles.exTitle}>💬 Ex</p>
+            <p>{currentExpression.ex}</p>
+          </div>
+        )}
+      </div>
       <div className={styles.buttonWrapper}>
         <div className={styles.prevNextButton} onClick={showPrevExpression}>
           PREV
