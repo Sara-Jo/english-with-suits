@@ -5,6 +5,10 @@
   font-weight: bold;
 }
 
+.episodeTitle {
+  margin-bottom: 4rem;
+}
+
 .element {
   margin-bottom: 1.5rem;
   text-decoration: underline;
