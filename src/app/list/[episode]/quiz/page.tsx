@@ -49,7 +49,17 @@ export default function Expressions() {
       </div>
       <div className={styles.upperWrapper}>
         <div className={styles.expressionWrapper}>
-          <p className={styles.en}>{currentExpression.en}</p>
+          <div className={styles.blankWrapper}>
+            {currentExpression.en.match(/[\w']+|[.,?!]/g)?.map((word, i) =>
+              [".", ",", "?", "!"].includes(word) ? (
+                <div className={styles.punctuation} key={i}>
+                  {word}
+                </div>
+              ) : (
+                <div className={styles.blank} key={i}></div>
+              )
+            )}
+          </div>
           <p className={styles.ko}>{currentExpression.ko}</p>
         </div>
 

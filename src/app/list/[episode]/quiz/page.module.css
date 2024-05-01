@@ -23,6 +23,27 @@
   margin-bottom: 5rem;
 }
 
+.blankWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.punctuation {
+  font-size: 1.7rem;
+  height: 5rem;
+  display: flex;
+  align-items: end;
+}
+
+.blank {
+  width: 5rem;
+  height: 5rem;
+  border-bottom: 3px solid;
+  margin-right: 1rem;
+}
+
 .en {
   font-size: 2rem;
   font-weight: bold;
