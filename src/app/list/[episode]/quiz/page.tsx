@@ -1,21 +1,26 @@
 "use client";
 
-import { Expression, expressions } from "@/db/expressions";
+import { EnKo, Expression, expressions } from "@/db/expressions";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 
 export default function Expressions() {
   const data: Expression = expressions[0];
   const expLength = data.expressions.length;
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentExpression, setCurrentExpression] = useState(
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [currentExpression, setCurrentExpression] = useState<EnKo>(
     data.expressions[currentIndex]
   );
   const [words, setWords] = useState<string[]>([]);
+  const [selectedWords, setSelectedWords] = useState<string[]>([]);
 
   useEffect(() => {
-    let trimmedStr = currentExpression.en.replace(/[.,?]/g, "");
-    setWords(shuffleArray(trimmedStr.split(" ")));
+    const trimmedStr: string = currentExpression.en.replace(/[.,?]/g, "");
+    const wordList = trimmedStr.split(" ");
+    setWords(shuffleArray(wordList));
+
+    const initialSelectedWords: string[] = wordList.map(() => "_");
+    setSelectedWords(initialSelectedWords);
   }, [currentExpression]);
 
   useEffect(() => {
@@ -55,8 +60,10 @@ export default function Expressions() {
                 <div className={styles.punctuation} key={i}>
                   {word}
                 </div>
-              ) : (
+              ) : selectedWords[i] === "_" ? (
                 <div className={styles.blank} key={i}></div>
+              ) : (
+                <div>{selectedWords[i]}</div>
               )
             )}
           </div>
