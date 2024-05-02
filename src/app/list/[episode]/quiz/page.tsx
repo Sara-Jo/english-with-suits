@@ -15,7 +15,9 @@ export default function Expressions() {
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
 
   useEffect(() => {
-    const trimmedStr: string = currentExpression.en.replace(/[.,?]/g, "");
+    const trimmedStr: string = currentExpression.en
+      .replace(/[.,?!~]/g, "")
+      .trim();
     const wordList = trimmedStr.split(" ");
     setWords(shuffleArray(wordList));
 
@@ -65,8 +67,8 @@ export default function Expressions() {
       <div className={styles.upperWrapper}>
         <div className={styles.expressionWrapper}>
           <div className={styles.blankWrapper}>
-            {currentExpression.en.match(/[\w']+|[.,?!]/g)?.map((word, i) =>
-              [".", ",", "?", "!"].includes(word) ? (
+            {currentExpression.en.match(/[\w']+|[.,?!~]/g)?.map((word, i) =>
+              [".", ",", "?", "!", "~"].includes(word) ? (
                 <div className={styles.punctuation} key={i}>
                   {word}
                 </div>
