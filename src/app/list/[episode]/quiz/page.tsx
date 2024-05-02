@@ -35,6 +35,16 @@ export default function Expressions() {
     return array;
   };
 
+  const onClickWord = (word: string) => {
+    const index = selectedWords.indexOf("_");
+
+    if (index !== -1) {
+      const newSelectedWords = [...selectedWords];
+      newSelectedWords[index] = word;
+      setSelectedWords(newSelectedWords);
+    }
+  };
+
   const showPrevExpression = () => {
     if (currentIndex === 0) return;
 
@@ -63,7 +73,9 @@ export default function Expressions() {
               ) : selectedWords[i] === "_" ? (
                 <div className={styles.blank} key={i}></div>
               ) : (
-                <div>{selectedWords[i]}</div>
+                <div className={styles.selectedWord} key={i}>
+                  {selectedWords[i]}
+                </div>
               )
             )}
           </div>
@@ -79,7 +91,11 @@ export default function Expressions() {
 
         <div className={styles.wordsWrapper}>
           {words.map((word, i) => (
-            <div className={styles.word} key={i}>
+            <div
+              onClick={() => onClickWord(word)}
+              className={styles.word}
+              key={i}
+            >
               {word}
             </div>
           ))}
