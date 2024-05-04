@@ -118,14 +118,11 @@
   border: 20px solid green;
   border-radius: 50%;
   position: absolute;
-  /* top: 50%; */
-  /* left: 50%; */
   transform: translate(-50%, -50%);
-  opacity: 0; /* Initially hidden */
+  opacity: 0;
   animation: popUp 0.5s forwards;
 }
 
-/* Define a CSS animation for the green circle */
 @keyframes popUp {
   0% {
     transform: scale(0);
