@@ -4,6 +4,11 @@ import { EnKo, Expression, expressions } from "@/db/expressions";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 
+interface Word {
+  text: string;
+  isSelected: boolean;
+}
+
 export default function Expressions() {
   const data: Expression = expressions[0];
   const expLength = data.expressions.length;
@@ -11,7 +16,7 @@ export default function Expressions() {
   const [currentExpression, setCurrentExpression] = useState<EnKo>(
     data.expressions[currentIndex]
   );
-  const [words, setWords] = useState<string[]>([]);
+  const [words, setWords] = useState<Word[]>([]);
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
 
   useEffect(() => {
@@ -19,7 +24,12 @@ export default function Expressions() {
       .replace(/[.,?!~]/g, "")
       .trim();
     const wordList = trimmedStr.split(" ");
-    setWords(shuffleArray(wordList));
+    setWords(
+      shuffleArray(wordList).map((w: string) => ({
+        text: w,
+        isSelected: false,
+      }))
+    );
 
     const initialSelectedWords: string[] = wordList.map(() => "_");
     setSelectedWords(initialSelectedWords);
@@ -29,7 +39,7 @@ export default function Expressions() {
     setCurrentExpression(data.expressions[currentIndex]);
   }, [currentIndex, data]);
 
-  const shuffleArray = (array: string[]) => {
+  const shuffleArray = (array: string[]): string[] => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
@@ -37,13 +47,16 @@ export default function Expressions() {
     return array;
   };
 
-  const onClickWord = (word: string) => {
+  const onClickWord = (word: Word) => {
+    if (word.isSelected) return;
+
     const index = selectedWords.indexOf("_");
 
     if (index !== -1) {
       const newSelectedWords = [...selectedWords];
-      newSelectedWords[index] = word;
+      newSelectedWords[index] = word.text;
       setSelectedWords(newSelectedWords);
+      word.isSelected = true;
     }
   };
 
@@ -98,7 +111,7 @@ export default function Expressions() {
               className={styles.word}
               key={i}
             >
-              {word}
+              {word.text}
             </div>
           ))}
         </div>
