@@ -19,6 +19,7 @@ export default function Expressions() {
   );
   const [words, setWords] = useState<Word[]>([]);
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
+  const [showPopUp, setShowPopUp] = useState<boolean>(false);
 
   useEffect(() => {
     const trimmedStr: string = currentExpression.en
@@ -40,6 +41,16 @@ export default function Expressions() {
     setCurrentExpression(data.expressions[currentIndex]);
   }, [currentIndex, data]);
 
+  useEffect(() => {
+    if (showPopUp) {
+      const timeoutId = setTimeout(() => {
+        setShowPopUp(false);
+      }, 2000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [showPopUp]);
+
   const shuffleArray = (array: string[]): string[] => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -59,6 +70,8 @@ export default function Expressions() {
       setSelectedWords(newSelectedWords);
       word.isSelected = true;
     }
+
+    if (index === selectedWords.length - 1) setShowPopUp(true);
   };
 
   const onClickResetButton = () => {
@@ -101,6 +114,8 @@ export default function Expressions() {
             )}
           </div>
           <p className={styles.ko}>{currentExpression.ko}</p>
+
+          {showPopUp && <div className={styles.greenCircle}></div>}
         </div>
 
         {currentExpression.ex && (
