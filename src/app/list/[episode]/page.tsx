@@ -13,7 +13,12 @@ export default function Episode({ params }: { params: { episode: number } }) {
       <p className={styles.episodeTitle}>
         Episode {params.episode}: {episodeTitle}
       </p>
-      <p className={styles.element}>📄 전체 스크립트 보기</p>
+      <p
+        className={styles.element}
+        onClick={() => router.push(`${params.episode}/script`)}
+      >
+        📄 전체 스크립트 보기
+      </p>
       <p
         className={styles.element}
         onClick={() => router.push(`${params.episode}/expressions`)}
