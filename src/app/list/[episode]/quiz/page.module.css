@@ -82,6 +82,11 @@
   cursor: pointer;
 }
 
+.resetButton {
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
 .buttonWrapper {
   width: 50%;
   display: flex;

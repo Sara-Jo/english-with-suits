@@ -3,6 +3,7 @@
 import { EnKo, Expression, expressions } from "@/db/expressions";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 interface Word {
   text: string;
@@ -60,6 +61,11 @@ export default function Expressions() {
     }
   };
 
+  const onClickResetButton = () => {
+    setSelectedWords((prev) => prev.map((w) => "_"));
+    setWords((prev) => prev.map((w) => ({ ...w, isSelected: false })));
+  };
+
   const showPrevExpression = () => {
     if (currentIndex === 0) return;
 
@@ -114,6 +120,9 @@ export default function Expressions() {
               {word.text}
             </div>
           ))}
+          <div onClick={onClickResetButton} className={styles.resetButton}>
+            <RestartAltIcon fontSize="large" />
+          </div>
         </div>
       </div>
 
