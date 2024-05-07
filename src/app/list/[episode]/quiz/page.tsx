@@ -83,14 +83,14 @@ export default function Expressions() {
 
   const showPrevExpression = () => {
     if (currentIndex === 0) return;
-
     setCurrentIndex((prevIndex) => prevIndex - 1);
+    setShowPopUp(false);
   };
 
   const showNextExpression = () => {
     if (currentIndex === expLength - 1) return;
-
     setCurrentIndex((prevIndex) => prevIndex + 1);
+    setShowPopUp(false);
   };
 
   return (
