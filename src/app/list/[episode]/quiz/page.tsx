@@ -19,15 +19,18 @@ export default function Expressions() {
   const [currentExpression, setCurrentExpression] = useState<EnKo>(
     data.expressions[currentIndex]
   );
+  const [answer, setAnswer] = useState<string[]>([]);
   const [words, setWords] = useState<Word[]>([]);
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
+  const [isCorrect, setIsCorrect] = useState<boolean>(true);
 
   useEffect(() => {
     const trimmedStr: string = currentExpression.en
       .replace(/[.,?!~]/g, "")
       .trim();
     const wordList = trimmedStr.split(" ");
+    setAnswer([...wordList]);
     setWords(
       shuffleArray(wordList).map((w: string) => ({
         text: w,
@@ -42,6 +45,23 @@ export default function Expressions() {
   useEffect(() => {
     setCurrentExpression(data.expressions[currentIndex]);
   }, [currentIndex, data]);
+
+  useEffect(() => {
+    console.log(selectedWords);
+    if (
+      selectedWords.length &&
+      selectedWords[selectedWords.length - 1] !== "_"
+    ) {
+      setIsCorrect(true);
+      for (let i = 0; i < answer.length; i++) {
+        if (answer[i] !== selectedWords[i]) {
+          setIsCorrect(false);
+          break;
+        }
+      }
+      setShowPopUp(true);
+    }
+  }, [selectedWords, answer]);
 
   useEffect(() => {
     if (showPopUp) {
@@ -72,8 +92,6 @@ export default function Expressions() {
       setSelectedWords(newSelectedWords);
       word.isSelected = true;
     }
-
-    if (index === selectedWords.length - 1) setShowPopUp(true);
   };
 
   const onClickResetButton = () => {
@@ -127,7 +145,13 @@ export default function Expressions() {
             </div>
             <p className={styles.ko}>{currentExpression.ko}</p>
 
-            {showPopUp && <div className={styles.greenCircle}></div>}
+            {showPopUp && isCorrect ? (
+              <div className={styles.greenCircle}></div>
+            ) : showPopUp && !isCorrect ? (
+              <div className={styles.xSign}></div>
+            ) : (
+              ""
+            )}
           </div>
 
           {currentExpression.ex && (

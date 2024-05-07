@@ -132,6 +132,28 @@
   animation: popUp 0.5s forwards;
 }
 
+.xSign {
+  position: relative;
+  top: -10rem;
+}
+
+.xSign::before,
+.xSign::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 15rem;
+  background-color: red;
+}
+
+.xSign::before {
+  transform: rotate(45deg);
+}
+
+.xSign::after {
+  transform: rotate(-45deg);
+}
+
 @keyframes popUp {
   0% {
     transform: scale(0);
