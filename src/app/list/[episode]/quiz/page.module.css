@@ -10,6 +10,10 @@
 
 .upperWrapper {
   min-height: 25rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .expressionWrapper {
@@ -87,20 +91,15 @@
   cursor: pointer;
 }
 
-.buttonWrapper {
-  width: 50%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5rem;
-}
-
 .prevNextButton {
   font-size: 1.2rem;
   font-weight: bold;
-  border: 1px solid;
   padding: 0.7rem 1.5rem;
-  border-radius: 1rem;
   cursor: pointer;
+}
+
+.disabled {
+  opacity: 40%;
 }
 
 .exWrapper {

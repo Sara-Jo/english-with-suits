@@ -4,6 +4,8 @@ import { EnKo, Expression, expressions } from "@/db/expressions";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
+import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
 
 interface Word {
   text: string;
@@ -97,56 +99,65 @@ export default function Expressions() {
         {currentIndex + 1} / {expLength}
       </div>
       <div className={styles.upperWrapper}>
-        <div className={styles.expressionWrapper}>
-          <div className={styles.blankWrapper}>
-            {currentExpression.en.match(/[\w']+|[.,?!~]/g)?.map((word, i) =>
-              [".", ",", "?", "!", "~"].includes(word) ? (
-                <div className={styles.punctuation} key={i}>
-                  {word}
-                </div>
-              ) : selectedWords[i] === "_" ? (
-                <div className={styles.blank} key={i}></div>
-              ) : (
-                <div className={styles.selectedWord} key={i}>
-                  {selectedWords[i]}
-                </div>
-              )
-            )}
-          </div>
-          <p className={styles.ko}>{currentExpression.ko}</p>
-
-          {showPopUp && <div className={styles.greenCircle}></div>}
+        <div
+          className={`${styles.prevNextButton} ${
+            currentIndex === 0 ? styles.disabled : ""
+          }`}
+          onClick={showPrevExpression}
+        >
+          <ArrowCircleLeftRoundedIcon fontSize="large" />
         </div>
-
-        {currentExpression.ex && (
-          <div className={styles.exWrapper}>
-            <p className={styles.exTitle}>💬 Ex</p>
-            <p>{currentExpression.ex}</p>
-          </div>
-        )}
-
-        <div className={styles.wordsWrapper}>
-          {words.map((word, i) => (
-            <div
-              onClick={() => onClickWord(word)}
-              className={styles.word}
-              key={i}
-            >
-              {word.text}
+        <div>
+          <div className={styles.expressionWrapper}>
+            <div className={styles.blankWrapper}>
+              {currentExpression.en.match(/[\w']+|[.,?!~]/g)?.map((word, i) =>
+                [".", ",", "?", "!", "~"].includes(word) ? (
+                  <div className={styles.punctuation} key={i}>
+                    {word}
+                  </div>
+                ) : selectedWords[i] === "_" ? (
+                  <div className={styles.blank} key={i}></div>
+                ) : (
+                  <div className={styles.selectedWord} key={i}>
+                    {selectedWords[i]}
+                  </div>
+                )
+              )}
             </div>
-          ))}
-          <div onClick={onClickResetButton} className={styles.resetButton}>
-            <RestartAltIcon fontSize="large" />
+            <p className={styles.ko}>{currentExpression.ko}</p>
+
+            {showPopUp && <div className={styles.greenCircle}></div>}
+          </div>
+
+          {currentExpression.ex && (
+            <div className={styles.exWrapper}>
+              <p className={styles.exTitle}>💬 Ex</p>
+              <p>{currentExpression.ex}</p>
+            </div>
+          )}
+
+          <div className={styles.wordsWrapper}>
+            {words.map((word, i) => (
+              <div
+                onClick={() => onClickWord(word)}
+                className={styles.word}
+                key={i}
+              >
+                {word.text}
+              </div>
+            ))}
+            <div onClick={onClickResetButton} className={styles.resetButton}>
+              <RestartAltIcon fontSize="large" />
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className={styles.buttonWrapper}>
-        <div className={styles.prevNextButton} onClick={showPrevExpression}>
-          PREV
-        </div>
-        <div className={styles.prevNextButton} onClick={showNextExpression}>
-          NEXT
+        <div
+          className={`${styles.prevNextButton} ${
+            currentIndex === expLength - 1 ? styles.disabled : ""
+          }`}
+          onClick={showNextExpression}
+        >
+          <ArrowCircleRightRoundedIcon fontSize="large" />
         </div>
       </div>
     </div>
