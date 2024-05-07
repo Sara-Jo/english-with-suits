@@ -13,7 +13,6 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .expressionWrapper {
@@ -95,6 +94,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 1.5rem;
+  margin-top: 2rem;
   cursor: pointer;
 }
 
