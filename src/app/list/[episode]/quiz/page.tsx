@@ -79,6 +79,7 @@ export default function Expressions() {
   const onClickResetButton = () => {
     setSelectedWords((prev) => prev.map((w) => "_"));
     setWords((prev) => prev.map((w) => ({ ...w, isSelected: false })));
+    setShowPopUp(false);
   };
 
   const showPrevExpression = () => {
@@ -137,15 +138,17 @@ export default function Expressions() {
           )}
 
           <div className={styles.wordsWrapper}>
-            {words.map((word, i) => (
-              <div
-                onClick={() => onClickWord(word)}
-                className={styles.word}
-                key={i}
-              >
-                {word.text}
-              </div>
-            ))}
+            <div className={styles.words}>
+              {words.map((word, i) => (
+                <div
+                  onClick={() => onClickWord(word)}
+                  className={styles.word}
+                  key={i}
+                >
+                  {word.text}
+                </div>
+              ))}
+            </div>
             <div onClick={onClickResetButton} className={styles.resetButton}>
               <RestartAltIcon fontSize="large" />
             </div>
