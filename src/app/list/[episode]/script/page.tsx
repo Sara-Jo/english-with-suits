@@ -24,8 +24,14 @@ export default function Script({ params }: { params: { episode: number } }) {
 
   return (
     <div className={styles.main}>
-      <div className={styles.downloadButton} onClick={() => downloadPdf()}>
-        <CloudDownloadIcon fontSize="large" />
+      <div
+        className={styles.downloadButtonWrapper}
+        onClick={() => downloadPdf()}
+      >
+        <p className={styles.downloadText}>스크립트 다운로드</p>
+        <div>
+          <CloudDownloadIcon fontSize="large" />
+        </div>
       </div>
     </div>
   );

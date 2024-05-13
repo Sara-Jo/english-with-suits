@@ -166,7 +166,9 @@ export default function Expressions() {
               {words.map((word, i) => (
                 <div
                   onClick={() => onClickWord(word)}
-                  className={styles.word}
+                  className={`${styles.word} ${
+                    word.isSelected ? styles.disabled : ""
+                  }`}
                   key={i}
                 >
                   {word.text}
