@@ -6,6 +6,8 @@ import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import { pdfjs } from "react-pdf";
 import { Document, Page } from "react-pdf";
 import { useState } from "react";
+import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
+import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.js",
@@ -37,6 +39,16 @@ export default function Script({ params }: { params: { episode: number } }) {
     setNumPages(numPages);
   }
 
+  const showPrevPage = () => {
+    if (pageNumber === 1) return;
+    setPageNumber((prev: number) => prev - 1);
+  };
+
+  const showNextPage = () => {
+    if (pageNumber === numPages) return;
+    setPageNumber((prev: number) => prev + 1);
+  };
+
   return (
     <div className={styles.main}>
       <div
@@ -49,16 +61,38 @@ export default function Script({ params }: { params: { episode: number } }) {
         </div>
       </div>
 
-      <div onClick={() => setPageNumber((prev: number) => prev - 1)}>prev</div>
-      <div onClick={() => setPageNumber((prev: number) => prev + 1)}>next</div>
+      <div className={styles.pageNumWrapper}>
+        <div
+          className={`${styles.pageButtonWrapper} ${
+            pageNumber === 1 ? styles.disabled : ""
+          }`}
+          onClick={showPrevPage}
+        >
+          이전 페이지
+          <div className={styles.prevPageButton}>
+            <ArrowCircleLeftRoundedIcon fontSize="medium" />
+          </div>
+        </div>
+        <p className={styles.pageNum}>
+          {pageNumber} / {numPages}
+        </p>
+        <div
+          className={`${styles.pageButtonWrapper} ${
+            pageNumber === numPages ? styles.disabled : ""
+          }`}
+          onClick={showNextPage}
+        >
+          <div className={styles.nextPageButton}>
+            <ArrowCircleRightRoundedIcon fontSize="medium" />
+          </div>
+          다음 페이지
+        </div>
+      </div>
 
       <div>
         <Document file="/scripts/E1.pdf" onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
-        <p>
-          Page {pageNumber} of {numPages}
-        </p>
       </div>
     </div>
   );

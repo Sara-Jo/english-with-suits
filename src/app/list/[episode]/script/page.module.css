@@ -1,7 +1,6 @@
 .main {
   padding-left: 2rem;
   padding-right: 2rem;
-  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,6 +12,39 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.pageNumWrapper {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.pageButtonWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 40%;
+}
+
+.prevPageButton {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.nextPageButton {
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.pageNum {
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 
 .downloadText {
