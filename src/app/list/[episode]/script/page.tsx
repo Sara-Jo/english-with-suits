@@ -91,7 +91,11 @@ export default function Script({ params }: { params: { episode: number } }) {
 
       <div>
         <Document file="/scripts/E1.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-          <Page pageNumber={pageNumber} />
+          <Page
+            pageNumber={pageNumber}
+            renderAnnotationLayer={false}
+            renderTextLayer={false}
+          />
         </Document>
       </div>
     </div>
