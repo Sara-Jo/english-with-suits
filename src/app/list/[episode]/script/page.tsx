@@ -51,13 +51,10 @@ export default function Script({ params }: { params: { episode: number } }) {
 
   return (
     <div className={styles.main}>
-      <div
-        className={styles.downloadButtonWrapper}
-        onClick={() => downloadPdf()}
-      >
-        <p className={styles.downloadText}>스크립트 다운로드</p>
-        <div>
-          <CloudDownloadIcon fontSize="large" />
+      <div className={styles.downloadButtonWrapper}>
+        <div className={styles.downloadButton} onClick={() => downloadPdf()}>
+          <p className={styles.downloadText}>스크립트 다운로드</p>
+          <CloudDownloadIcon fontSize="medium" />
         </div>
       </div>
 
@@ -90,7 +87,10 @@ export default function Script({ params }: { params: { episode: number } }) {
       </div>
 
       <div>
-        <Document file="/scripts/E1.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+        <Document
+          file={`/scripts/E${params.episode}.pdf`}
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
           <Page
             pageNumber={pageNumber}
             renderAnnotationLayer={false}
