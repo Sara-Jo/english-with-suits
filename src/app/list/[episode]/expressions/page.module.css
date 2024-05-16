@@ -8,6 +8,11 @@
   justify-content: center;
 }
 
+.speakButton {
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+
 .upperWrapper {
   min-height: 20rem;
 }

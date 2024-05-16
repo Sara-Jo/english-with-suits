@@ -3,6 +3,7 @@
 import { Expression, expressions } from "@/db/expressions";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
+import VolumeUpRoundedIcon from "@mui/icons-material/VolumeUpRounded";
 
 export default function Expressions() {
   const data: Expression = expressions[0];
@@ -28,11 +29,23 @@ export default function Expressions() {
     setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 
+  const speakExpression = () => {
+    const utterance = new SpeechSynthesisUtterance();
+    utterance.voice = speechSynthesis.getVoices()[1];
+    utterance.text = currentExpression.en;
+    speechSynthesis.speak(utterance);
+  };
+
   return (
     <div className={styles.main}>
       <div className={styles.index}>
         {currentIndex + 1} / {expLength}
       </div>
+
+      <div onClick={speakExpression} className={styles.speakButton}>
+        <VolumeUpRoundedIcon fontSize="large" />
+      </div>
+
       <div className={styles.upperWrapper}>
         <div className={styles.expressionWrapper}>
           <p className={styles.en}>{currentExpression.en}</p>
