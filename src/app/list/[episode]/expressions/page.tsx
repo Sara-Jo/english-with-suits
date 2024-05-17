@@ -12,10 +12,26 @@ export default function Expressions() {
   const [currentExpression, setCurrentExpression] = useState(
     data.expressions[currentIndex]
   );
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
 
   useEffect(() => {
     setCurrentExpression(data.expressions[currentIndex]);
   }, [currentIndex, data]);
+
+  useEffect(() => {
+    const loadVoices = () => {
+      const availableVoices = speechSynthesis.getVoices();
+      setVoices(availableVoices);
+    };
+
+    loadVoices();
+
+    speechSynthesis.addEventListener("voiceschanged", loadVoices);
+
+    return () => {
+      speechSynthesis.removeEventListener("voiceschanged", loadVoices);
+    };
+  }, []);
 
   const showPrevExpression = () => {
     if (currentIndex === 0) return;
@@ -29,11 +45,15 @@ export default function Expressions() {
     setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 
-  const speakExpression = () => {
-    const utterance = new SpeechSynthesisUtterance();
-    utterance.voice = speechSynthesis.getVoices()[1];
-    utterance.text = currentExpression.en;
-    speechSynthesis.speak(utterance);
+  const speakExpression = async () => {
+    if (voices.length > 0) {
+      const utterance = new SpeechSynthesisUtterance();
+      utterance.voice = await speechSynthesis.getVoices()[1];
+      utterance.text = currentExpression.en;
+      speechSynthesis.speak(utterance);
+    } else {
+      console.log("No voices available.");
+    }
   };
 
   return (
