@@ -4,6 +4,8 @@ import { Expression, expressions } from "@/db/expressions";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import VolumeUpRoundedIcon from "@mui/icons-material/VolumeUpRounded";
+import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
+import Link from "next/link";
 
 export default function Expressions() {
   const data: Expression = expressions[0];
@@ -13,10 +15,19 @@ export default function Expressions() {
     data.expressions[currentIndex]
   );
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const [exLink, setExLink] = useState<string>("");
 
   useEffect(() => {
     setCurrentExpression(data.expressions[currentIndex]);
   }, [currentIndex, data]);
+
+  useEffect(() => {
+    const baseUrl = "https://youglish.com/pronounce/";
+    const language = "english";
+    const encodedExpression = encodeURIComponent(currentExpression.en);
+    const url = `${baseUrl}${encodedExpression}/${language}?`;
+    setExLink(url);
+  }, [currentExpression]);
 
   useEffect(() => {
     const loadVoices = () => {
@@ -76,6 +87,14 @@ export default function Expressions() {
           <div className={styles.exWrapper}>
             <p className={styles.exTitle}>💬 Ex</p>
             <p>{currentExpression.ex}</p>
+            <div className={styles.exLinkWrapper}>
+              <div className={styles.exLinkIcon}>
+                <LaunchRoundedIcon fontSize="medium" />
+              </div>
+              <Link href={exLink} target="_blank">
+                <p className={styles.exLinkText}>다른 예문 확인하기</p>
+              </Link>
+            </div>
           </div>
         )}
       </div>
