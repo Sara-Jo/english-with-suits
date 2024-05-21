@@ -13,12 +13,15 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
+  auth,
   children,
 }: Readonly<{
+  auth: React.ReactNode;
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
+      <div>{auth}</div>
       <body className={inter.className}>{children}</body>
     </html>
   );
