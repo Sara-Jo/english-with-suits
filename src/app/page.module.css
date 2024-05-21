@@ -3,13 +3,33 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.11), black),
     url("/image/suits-poster.webp");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: right;
+}
+
+.upperWrapper {
+  display: flex;
+  justify-content: end;
+  padding: 1.5rem;
+}
+
+.loginButton {
+  font-weight: 500;
+  margin-left: 1.3rem;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .startButton {
@@ -19,6 +39,8 @@
   border: solid 1px;
   border-radius: 1rem;
   padding: 1rem 2rem;
+  background-color: white;
+  color: black;
 
   &:hover {
     cursor: pointer;

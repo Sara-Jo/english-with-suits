@@ -9,12 +9,21 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <h1>English With Suits</h1>
-      {/* <Link href="/list"> */}
-      <div onClick={() => router.push("/list")} className={styles.startButton}>
-        START
+      <div className={styles.upperWrapper}>
+        <p className={styles.loginButton}>Sign in</p>
+        <p className={styles.loginButton}>Login</p>
       </div>
-      {/* </Link> */}
+      <div className={styles.body}>
+        <h1>English With Suits</h1>
+        {/* <Link href="/list"> */}
+        <div
+          onClick={() => router.push("/list")}
+          className={styles.startButton}
+        >
+          START
+        </div>
+        {/* </Link> */}
+      </div>
     </main>
   );
 }
