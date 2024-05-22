@@ -18,6 +18,7 @@ export default function Login() {
           theme: ThemeSupa,
           style: { container: { width: "300px" } },
         }}
+        providers={["google", "kakao", "github"]}
       />
     </div>
   );
