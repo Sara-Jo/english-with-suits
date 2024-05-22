@@ -12,7 +12,13 @@ export default function Login() {
 
   return (
     <div>
-      <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+      <Auth
+        supabaseClient={supabase}
+        appearance={{
+          theme: ThemeSupa,
+          style: { container: { width: "300px" } },
+        }}
+      />
     </div>
   );
 }

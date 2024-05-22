@@ -1,5 +1,10 @@
 import Login from "../_components/login";
+import styles from "./page.module.css";
 
 export default function Page() {
-  return <Login />;
+  return (
+    <div className={styles.container}>
+      <Login />
+    </div>
+  );
 }
