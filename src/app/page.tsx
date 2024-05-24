@@ -10,9 +10,8 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.upperWrapper}>
-        <p className={styles.loginButton}>Sign in</p>
         <Link href="/login">
-          <p className={styles.loginButton}>Login</p>
+          <p className={styles.loginButton}>Sign in</p>
         </Link>
       </div>
       <div className={styles.body}>
