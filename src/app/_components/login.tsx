@@ -19,6 +19,7 @@ export default function Login() {
           style: { container: { width: "300px" } },
         }}
         providers={["google", "kakao", "github"]}
+        redirectTo="http://localhost:3000"
       />
     </div>
   );

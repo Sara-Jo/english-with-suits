@@ -23,7 +23,10 @@ export default function Home() {
     const getUser = async () => {
       const user = await supabase.auth.getUser();
       const session = await supabase.auth.getSession();
-      if (session.data.session !== null) setIsLoggedIn(true);
+      if (session.data.session !== null) {
+        setIsLoggedIn(true);
+        router.replace("/");
+      }
     };
     getUser();
   }, [supabase]);
