@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
-import Login from "@/app/_components/login";
+import Login from "@/app/_components/Login";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 export default function Page() {

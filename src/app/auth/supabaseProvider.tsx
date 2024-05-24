@@ -1,22 +1,75 @@
 "use client";
 
-import { useState } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
+import { useRouter } from "next/navigation";
+import { User } from "@supabase/supabase-js";
+import supabase from "./supabaseClient";
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { SessionContextProvider } from "@supabase/auth-helpers-react";
+type AuthContextType = {
+  user: User | null;
+  loading: boolean;
+  signOut: () => Promise<void>;
+};
 
-interface SupabaseProviderProp {
-  children: React.ReactNode;
-}
+const AuthContext = createContext<AuthContextType>({
+  user: null,
+  loading: true,
+  signOut: async () => {},
+});
 
-const SupabaseProvider: React.FC<SupabaseProviderProp> = ({ children }) => {
-  const [supabaseClient] = useState(() => createClientComponentClient());
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const session = await supabase.auth.getSession();
+      if (session.data.session?.user) {
+        setUser(session.data.session.user);
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    };
+
+    checkUser();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user || null);
+        if (event === "SIGNED_OUT") {
+          router.push("/login");
+        }
+      }
+    );
+
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, []);
+
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (!error) {
+      setUser(null);
+      router.push("/login");
+    }
+  };
 
   return (
-    <SessionContextProvider supabaseClient={supabaseClient}>
+    <AuthContext.Provider value={{ user, loading, signOut }}>
       {children}
-    </SessionContextProvider>
+    </AuthContext.Provider>
   );
 };
 
-export default SupabaseProvider;
+export const useAuthContext = (): AuthContextType => useContext(AuthContext);

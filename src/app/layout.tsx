@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import SupabaseProvider from "./auth/supabaseProvider";
+import { AuthProvider } from "./auth/supabaseProvider";
+import { Suspense } from "react";
+import Loading from "./_components/Loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,10 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SupabaseProvider>
-          <div>{auth}</div>
-          {children}
-        </SupabaseProvider>
+        <AuthProvider>
+          <Suspense fallback={<Loading />}>
+            <div>{auth}</div>
+            {children}
+          </Suspense>
+        </AuthProvider>
       </body>
     </html>
   );

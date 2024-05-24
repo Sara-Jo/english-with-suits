@@ -4,38 +4,51 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
+import supabase from "./auth/supabaseClient";
+import { useAuthContext } from "./auth/supabaseProvider";
+import Loading from "./_components/Loading";
+import ConfirmModal from "./_components/ConfirmModal";
 
 export default function Home() {
   const router = useRouter();
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL as string,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
-  );
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user, loading, signOut } = useAuthContext();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [logoutLoading, setLogoutLoading] = useState(false);
 
-  const logout = async () => {
-    const { error } = await supabase.auth.signOut();
-    setIsLoggedIn(false);
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
+  };
+
+  const handleConfirmLogout = async () => {
+    setShowLogoutModal(false);
+    setLogoutLoading(true);
+    await signOut();
+    setLogoutLoading(false);
+  };
+
+  const handleCancelLogout = () => {
+    setShowLogoutModal(false);
   };
 
   useEffect(() => {
-    const getUser = async () => {
-      const user = await supabase.auth.getUser();
-      const session = await supabase.auth.getSession();
-      if (session.data.session !== null) {
-        setIsLoggedIn(true);
-        router.replace("/");
-      }
-    };
-    getUser();
-  }, [supabase]);
+    if (user) {
+      router.replace("/");
+    }
+  });
+
+  if (loading || logoutLoading) {
+    return (
+      <div className={styles.loadingMain}>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <main className={styles.main}>
       <div className={styles.upperWrapper}>
-        {isLoggedIn ? (
-          <p onClick={logout} className={styles.loginButton}>
+        {user ? (
+          <p onClick={handleLogoutClick} className={styles.loginButton}>
             Logout
           </p>
         ) : (
@@ -53,6 +66,14 @@ export default function Home() {
           START
         </div>
       </div>
+
+      {showLogoutModal && (
+        <ConfirmModal
+          message="로그아웃 하시겠어요?"
+          onConfirm={handleConfirmLogout}
+          onCancel={handleCancelLogout}
+        />
+      )}
     </main>
   );
 }
