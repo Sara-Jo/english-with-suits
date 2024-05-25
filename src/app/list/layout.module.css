@@ -1,8 +1,32 @@
-.backButton {
+.container {
+  display: flex;
+  justify-content: space-between;
   padding: 2rem;
+}
+
+.backButton {
   display: inline-block;
 
   &:hover {
     cursor: pointer;
   }
+}
+
+.loginButtonWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.loginButton {
+  margin-left: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.loadingMain {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
