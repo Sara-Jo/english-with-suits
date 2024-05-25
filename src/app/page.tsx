@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import supabase from "./auth/supabaseClient";
 import { useAuthContext } from "./auth/supabaseProvider";
 import Loading from "./_components/Loading";
 import ConfirmModal from "./_components/ConfirmModal";

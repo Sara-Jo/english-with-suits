@@ -1,0 +1,14 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.backButton {
+  padding: 2rem;
+  display: inline-block;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
