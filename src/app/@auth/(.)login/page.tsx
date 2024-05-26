@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
-import Login from "@/app/_components/Login";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import Login from "@/app/_components/login";
 
 export default function Page() {
   const router = useRouter();
