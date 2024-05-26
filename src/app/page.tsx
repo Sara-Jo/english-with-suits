@@ -47,9 +47,17 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.upperWrapper}>
         {user ? (
-          <p onClick={handleLogoutClick} className={styles.loginButton}>
-            Logout
-          </p>
+          <>
+            <p
+              onClick={() => router.push("/mypage")}
+              className={styles.loginButton}
+            >
+              My Page
+            </p>
+            <p onClick={handleLogoutClick} className={styles.loginButton}>
+              Logout
+            </p>
+          </>
         ) : (
           <Link href="/login">
             <p className={styles.loginButton}>Sign in</p>

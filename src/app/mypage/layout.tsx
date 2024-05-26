@@ -14,7 +14,7 @@ export default function ListLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { user, signOut, loading } = useAuthContext();
+  const { signOut, loading } = useAuthContext();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
 
@@ -27,6 +27,7 @@ export default function ListLayout({
     setLogoutLoading(true);
     await signOut();
     setLogoutLoading(false);
+    router.replace("/");
   };
 
   const handleCancelLogout = () => {
@@ -48,26 +49,9 @@ export default function ListLayout({
           <ArrowBackIosIcon fontSize="large" />
         </div>
         <div className={styles.loginButtonWrapper}>
-          {user ? (
-            <>
-              <p
-                onClick={() => router.push("/mypage")}
-                className={styles.loginButton}
-              >
-                My Page
-              </p>
-              <p onClick={handleLogoutClick} className={styles.loginButton}>
-                Logout
-              </p>
-            </>
-          ) : (
-            <p
-              onClick={() => router.push("/login")}
-              className={styles.loginButton}
-            >
-              Sign in
-            </p>
-          )}
+          <p onClick={handleLogoutClick} className={styles.loginButton}>
+            Logout
+          </p>
         </div>
       </div>
       {children}
