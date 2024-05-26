@@ -5,6 +5,8 @@ import styles from "./layout.module.css";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "../auth/supabaseProvider";
 import Loading from "../_components/Loading";
+import { useState } from "react";
+import ConfirmModal from "../_components/ConfirmModal";
 
 export default function ListLayout({
   children,
@@ -13,13 +15,25 @@ export default function ListLayout({
 }) {
   const router = useRouter();
   const { user, signOut, loading } = useAuthContext();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [logoutLoading, setLogoutLoading] = useState(false);
 
-  const handleLogout = async () => {
-    await signOut();
-    router.replace("/");
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
   };
 
-  if (loading) {
+  const handleConfirmLogout = async () => {
+    setShowLogoutModal(false);
+    setLogoutLoading(true);
+    await signOut();
+    setLogoutLoading(false);
+  };
+
+  const handleCancelLogout = () => {
+    setShowLogoutModal(false);
+  };
+
+  if (loading || logoutLoading) {
     return (
       <div className={styles.loadingMain}>
         <Loading />
@@ -37,7 +51,7 @@ export default function ListLayout({
           {user ? (
             <>
               <p className={styles.loginButton}>My Page</p>
-              <p onClick={handleLogout} className={styles.loginButton}>
+              <p onClick={handleLogoutClick} className={styles.loginButton}>
                 Logout
               </p>
             </>
@@ -46,12 +60,20 @@ export default function ListLayout({
               onClick={() => router.push("/login")}
               className={styles.loginButton}
             >
-              Log in
+              Sign in
             </p>
           )}
         </div>
       </div>
       {children}
+
+      {showLogoutModal && (
+        <ConfirmModal
+          message="로그아웃 하시겠어요?"
+          onConfirm={handleConfirmLogout}
+          onCancel={handleCancelLogout}
+        />
+      )}
     </section>
   );
 }
