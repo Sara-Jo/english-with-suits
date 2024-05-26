@@ -7,8 +7,12 @@ import VolumeUpRoundedIcon from "@mui/icons-material/VolumeUpRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 import Link from "next/link";
 
-export default function Expressions() {
-  const data: Expression = expressions[0];
+export default function Expressions({
+  params,
+}: {
+  params: { episode: number };
+}) {
+  const data: Expression = expressions[params.episode - 1];
   const expLength = data.expressions.length;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentExpression, setCurrentExpression] = useState(

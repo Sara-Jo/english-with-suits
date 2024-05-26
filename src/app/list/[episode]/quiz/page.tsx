@@ -12,8 +12,12 @@ interface Word {
   isSelected: boolean;
 }
 
-export default function Expressions() {
-  const data: Expression = expressions[0];
+export default function Expressions({
+  params,
+}: {
+  params: { episode: number };
+}) {
+  const data: Expression = expressions[params.episode - 1];
   const expLength = data.expressions.length;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [currentExpression, setCurrentExpression] = useState<EnKo>(
