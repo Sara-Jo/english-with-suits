@@ -12,6 +12,12 @@ interface Word {
   isSelected: boolean;
 }
 
+const getInitialSelectedWords = (answer: string[]): string[] => {
+  return answer.map((word) =>
+    [".", ",", "?", "!", "~"].includes(word) ? word : "_"
+  );
+};
+
 export default function Expressions({
   params,
 }: {
@@ -43,10 +49,7 @@ export default function Expressions({
       }))
     );
 
-    const initialSelectedWords: string[] = answer.map((word) =>
-      [".", ",", "?", "!", "~"].includes(word) ? word : "_"
-    );
-    setSelectedWords(initialSelectedWords);
+    setSelectedWords(getInitialSelectedWords(answer));
   }, [currentExpression]);
 
   useEffect(() => {
@@ -98,11 +101,7 @@ export default function Expressions({
   };
 
   const onClickResetButton = () => {
-    setSelectedWords(
-      answer.map((word) =>
-        [".", ",", "?", "!", "~"].includes(word) ? word : "_"
-      )
-    );
+    setSelectedWords(getInitialSelectedWords(answer));
     setWords((prev) => prev.map((w) => ({ ...w, isSelected: false })));
     setShowPopUp(false);
   };
