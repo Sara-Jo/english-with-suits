@@ -126,7 +126,7 @@ export default function Expressions({
       <div className={styles.upperWrapper}>
         <div
           className={`${styles.prevNextButton} ${
-            currentIndex === 0 ? styles.disabled : ""
+            currentIndex === 0 ? styles.disabled : styles.active
           }`}
           onClick={showPrevExpression}
         >
@@ -160,13 +160,6 @@ export default function Expressions({
             )}
           </div>
 
-          {currentExpression.ex && (
-            <div className={styles.exWrapper}>
-              <p className={styles.exTitle}>💬 Ex</p>
-              <p>{currentExpression.ex}</p>
-            </div>
-          )}
-
           <div className={styles.wordsWrapper}>
             <div className={styles.words}>
               {words.map((word, i) => (
@@ -188,7 +181,7 @@ export default function Expressions({
         </div>
         <div
           className={`${styles.prevNextButton} ${
-            currentIndex === expLength - 1 ? styles.disabled : ""
+            currentIndex === expLength - 1 ? styles.disabled : styles.active
           }`}
           onClick={showNextExpression}
         >

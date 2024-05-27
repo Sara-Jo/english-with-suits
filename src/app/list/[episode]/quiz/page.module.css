@@ -109,6 +109,9 @@
   font-weight: bold;
   padding: 0.7rem 1.5rem;
   margin-top: 2rem;
+}
+
+.active {
   cursor: pointer;
 }
 
