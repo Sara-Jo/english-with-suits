@@ -38,6 +38,7 @@
   height: 5rem;
   display: flex;
   align-items: end;
+  margin-right: 1rem;
 }
 
 .blank {

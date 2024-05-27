@@ -34,7 +34,8 @@ export default function Expressions({
       .replace(/[.,?!~]/g, "")
       .trim();
     const wordList = trimmedStr.split(" ");
-    setAnswer([...wordList]);
+    const answer = currentExpression.en.match(/[\w']+|[.,?!~]/g) ?? [];
+    setAnswer(answer);
     setWords(
       shuffleArray(wordList).map((w: string) => ({
         text: w,
@@ -42,7 +43,9 @@ export default function Expressions({
       }))
     );
 
-    const initialSelectedWords: string[] = wordList.map(() => "_");
+    const initialSelectedWords: string[] = answer.map((word) =>
+      [".", ",", "?", "!", "~"].includes(word) ? word : "_"
+    );
     setSelectedWords(initialSelectedWords);
   }, [currentExpression]);
 
@@ -51,11 +54,7 @@ export default function Expressions({
   }, [currentIndex, data]);
 
   useEffect(() => {
-    console.log(selectedWords);
-    if (
-      selectedWords.length &&
-      selectedWords[selectedWords.length - 1] !== "_"
-    ) {
+    if (selectedWords.length && !selectedWords.includes("_")) {
       setIsCorrect(true);
       for (let i = 0; i < answer.length; i++) {
         if (answer[i] !== selectedWords[i]) {
@@ -99,7 +98,11 @@ export default function Expressions({
   };
 
   const onClickResetButton = () => {
-    setSelectedWords((prev) => prev.map((w) => "_"));
+    setSelectedWords(
+      answer.map((word) =>
+        [".", ",", "?", "!", "~"].includes(word) ? word : "_"
+      )
+    );
     setWords((prev) => prev.map((w) => ({ ...w, isSelected: false })));
     setShowPopUp(false);
   };
@@ -133,7 +136,7 @@ export default function Expressions({
         <div>
           <div className={styles.expressionWrapper}>
             <div className={styles.blankWrapper}>
-              {currentExpression.en.match(/[\w']+|[.,?!~]/g)?.map((word, i) =>
+              {answer.map((word, i) =>
                 [".", ",", "?", "!", "~"].includes(word) ? (
                   <div className={styles.punctuation} key={i}>
                     {word}
