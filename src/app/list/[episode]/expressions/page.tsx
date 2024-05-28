@@ -10,8 +10,9 @@ import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRound
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
 import Link from "next/link";
 import supabase from "@/app/auth/supabaseClient";
-import { Expression } from "@/app/interface/expression";
+import { Expression } from "@/interface/expression";
 import Loading from "@/app/_components/Loading";
+import { fetchExpressions } from "@/lib/fetchExpressions";
 
 export default function Expressions({
   params,
@@ -28,22 +29,14 @@ export default function Expressions({
   const [exLink, setExLink] = useState<string>("");
 
   useEffect(() => {
-    const fetchExpressions = async () => {
-      const { data, error } = await supabase
-        .from("expressions")
-        .select("*")
-        .eq("episode", params.episode)
-        .order("id", { ascending: true });
-      if (error) {
-        console.error("Error fetching expressions:", error);
-      } else {
-        setData(data);
-        setCurrentExpression(data[0]);
-      }
+    const fetchData = async () => {
+      const expressions = await fetchExpressions(params.episode);
+      setData(expressions);
+      setCurrentExpression(expressions[0]);
       setIsLoading(false);
     };
 
-    fetchExpressions();
+    fetchData();
   }, [params.episode]);
 
   useEffect(() => {
