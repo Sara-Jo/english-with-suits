@@ -32,7 +32,8 @@ export default function Expressions({
       const { data, error } = await supabase
         .from("expressions")
         .select("*")
-        .eq("episode", params.episode);
+        .eq("episode", params.episode)
+        .order("id", { ascending: true });
       if (error) {
         console.error("Error fetching expressions:", error);
       } else {
