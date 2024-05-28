@@ -19,6 +19,7 @@ export default function Expressions({
 }: {
   params: { episode: number };
 }) {
+  const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<Expression[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -27,6 +28,25 @@ export default function Expressions({
   );
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [exLink, setExLink] = useState<string>("");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userData = await supabase.auth.getUser();
+      if (userData) {
+        const { data, error } = await supabase
+          .from("users")
+          .select("*")
+          .eq("user_id", userData.data.user?.id)
+          .single();
+        if (error) {
+          console.error("Error fetching user data:", error.message);
+        } else {
+          setUser(data);
+        }
+      }
+    };
+    fetchUserData();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
