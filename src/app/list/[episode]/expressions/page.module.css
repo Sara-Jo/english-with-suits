@@ -8,24 +8,51 @@
   justify-content: center;
 }
 
+.upperWrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.index {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookmarkButtonWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-right: 2rem;
+}
+
+.bookmarkButtontext {
+  margin-left: 0.2rem;
+}
+
 .speakButton {
   cursor: pointer;
   margin-bottom: 2rem;
 }
 
-.upperWrapper {
-  min-height: 20rem;
+.lowerWrapper {
+  min-height: 25rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .expressionWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.index {
-  font-size: 1.2rem;
-  margin-bottom: 5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .en {
@@ -48,10 +75,16 @@
 .prevNextButton {
   font-size: 1.2rem;
   font-weight: bold;
-  border: 1px solid;
   padding: 0.7rem 1.5rem;
-  border-radius: 1rem;
+  margin-top: 2rem;
+}
+
+.active {
   cursor: pointer;
+}
+
+.disabled {
+  opacity: 40%;
 }
 
 .exWrapper {
