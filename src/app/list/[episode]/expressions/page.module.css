@@ -29,6 +29,7 @@
   align-items: center;
   justify-content: end;
   padding-right: 2rem;
+  cursor: pointer;
 }
 
 .bookmarkButtontext {

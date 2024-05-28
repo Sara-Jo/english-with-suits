@@ -1,5 +1,5 @@
 import supabase from "@/app/auth/supabaseClient";
-import { Expression } from "@/interface/expression";
+import { Expression } from "@/lib/interface";
 
 export const fetchExpressions = async (
   episode: number

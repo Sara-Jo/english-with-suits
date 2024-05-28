@@ -10,7 +10,7 @@ import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRound
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
 import Link from "next/link";
 import supabase from "@/app/auth/supabaseClient";
-import { Expression } from "@/interface/expression";
+import { Expression, User } from "@/lib/interface";
 import Loading from "@/app/_components/Loading";
 import { fetchExpressions } from "@/lib/fetchExpressions";
 
@@ -19,7 +19,7 @@ export default function Expressions({
 }: {
   params: { episode: number };
 }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<Expression[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -38,6 +38,7 @@ export default function Expressions({
           .select("*")
           .eq("user_id", userData.data.user?.id)
           .single();
+        console.log(data);
         if (error) {
           console.error("Error fetching user data:", error.message);
         } else {
@@ -111,6 +112,20 @@ export default function Expressions({
     }
   };
 
+  const handleBookmarkClick = async () => {
+    if (user) {
+      const updatedUser = { ...user };
+      if (!updatedUser.bookmarks) {
+        updatedUser.bookmarks = [];
+      }
+      if (currentExpression) {
+        updatedUser.bookmarks.push(currentExpression?.id);
+        await supabase.from("users").upsert(updatedUser);
+        setUser(updatedUser);
+      }
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="loadingMain">
@@ -126,7 +141,10 @@ export default function Expressions({
         <div className={styles.index}>
           {currentIndex + 1} / {data.length || 0}
         </div>
-        <div className={styles.bookmarkButtonWrapper}>
+        <div
+          onClick={handleBookmarkClick}
+          className={styles.bookmarkButtonWrapper}
+        >
           <BookmarkBorderRoundedIcon fontSize="large" />
           <p className={styles.bookmarkButtontext}>Bookmark</p>
         </div>

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
-import { Expression } from "@/interface/expression";
+import { Expression } from "@/lib/expression";
 import { fetchExpressions } from "@/lib/fetchExpressions";
 import Loading from "@/app/_components/Loading";
 
