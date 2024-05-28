@@ -37,7 +37,7 @@ export default function Home() {
 
   if (loading || logoutLoading) {
     return (
-      <div className={styles.loadingMain}>
+      <div className="loadingMain">
         <Loading />
       </div>
     );

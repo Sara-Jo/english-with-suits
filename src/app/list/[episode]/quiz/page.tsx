@@ -125,8 +125,8 @@ export default function Expressions({
       </div>
       <div className={styles.upperWrapper}>
         <div
-          className={`${styles.prevNextButton} ${
-            currentIndex === 0 ? styles.disabled : styles.active
+          className={`prevNextButton ${
+            currentIndex === 0 ? "disabled" : "active"
           }`}
           onClick={showPrevExpression}
         >
@@ -149,7 +149,7 @@ export default function Expressions({
                 )
               )}
             </div>
-            <p className={styles.ko}>{currentExpression.ko}</p>
+            <p className="ko">{currentExpression.ko}</p>
 
             {showPopUp && isCorrect ? (
               <div className={styles.greenCircle}></div>
@@ -166,7 +166,7 @@ export default function Expressions({
                 <div
                   onClick={() => onClickWord(word)}
                   className={`${styles.word} ${
-                    word.isSelected ? styles.disabled : ""
+                    word.isSelected ? "disabled" : ""
                   }`}
                   key={i}
                 >
@@ -180,8 +180,8 @@ export default function Expressions({
           </div>
         </div>
         <div
-          className={`${styles.prevNextButton} ${
-            currentIndex === expLength - 1 ? styles.disabled : styles.active
+          className={`prevNextButton ${
+            currentIndex === expLength - 1 ? "disabled" : "active"
           }`}
           onClick={showNextExpression}
         >

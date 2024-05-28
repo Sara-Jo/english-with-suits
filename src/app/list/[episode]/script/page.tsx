@@ -61,7 +61,7 @@ export default function Script({ params }: { params: { episode: number } }) {
       <div className={styles.pageNumWrapper}>
         <div
           className={`${styles.pageButtonWrapper} ${
-            pageNumber === 1 ? styles.disabled : ""
+            pageNumber === 1 ? "disabled" : ""
           }`}
           onClick={showPrevPage}
         >
@@ -75,7 +75,7 @@ export default function Script({ params }: { params: { episode: number } }) {
         </p>
         <div
           className={`${styles.pageButtonWrapper} ${
-            pageNumber === numPages ? styles.disabled : ""
+            pageNumber === numPages ? "disabled" : ""
           }`}
           onClick={showNextPage}
         >

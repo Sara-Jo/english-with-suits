@@ -105,3 +105,36 @@ a {
     color-scheme: dark;
   }
 }
+
+.loadingMain {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 40%;
+}
+
+.en {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.ko {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+.prevNextButton {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.7rem 1.5rem;
+  margin-top: 2rem;
+}

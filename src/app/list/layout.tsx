@@ -35,7 +35,7 @@ export default function ListLayout({
 
   if (loading || logoutLoading) {
     return (
-      <div className={styles.loadingMain}>
+      <div className="loadingMain">
         <Loading />
       </div>
     );

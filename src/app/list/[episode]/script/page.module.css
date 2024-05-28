@@ -38,10 +38,6 @@
   cursor: pointer;
 }
 
-.disabled {
-  opacity: 40%;
-}
-
 .prevPageButton {
   margin-left: 1rem;
   display: flex;

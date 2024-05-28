@@ -55,36 +55,11 @@
   padding-right: 1rem;
 }
 
-.en {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.ko {
-  font-size: 1.5rem;
-  margin-top: 2rem;
-}
-
 .buttonWrapper {
   width: 50%;
   display: flex;
   justify-content: space-between;
   margin-top: 5rem;
-}
-
-.prevNextButton {
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 0.7rem 1.5rem;
-  margin-top: 2rem;
-}
-
-.active {
-  cursor: pointer;
-}
-
-.disabled {
-  opacity: 40%;
 }
 
 .exWrapper {
@@ -114,12 +89,4 @@
 .exLinkText {
   margin-left: 0.5rem;
   font-weight: 600;
-}
-
-.loadingMain {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

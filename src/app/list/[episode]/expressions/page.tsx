@@ -99,7 +99,7 @@ export default function Expressions({
 
   if (isLoading) {
     return (
-      <div className={styles.loadingMain}>
+      <div className="loadingMain">
         <Loading />
       </div>
     );
@@ -124,8 +124,8 @@ export default function Expressions({
 
       <div className={styles.lowerWrapper}>
         <div
-          className={`${styles.prevNextButton} ${
-            currentIndex === 0 ? styles.disabled : styles.active
+          className={`prevNextButton ${
+            currentIndex === 0 ? "disabled" : "active"
           }`}
           onClick={showPrevExpression}
         >
@@ -134,8 +134,8 @@ export default function Expressions({
 
         <div>
           <div className={styles.expressionWrapper}>
-            <p className={styles.en}>{currentExpression?.en}</p>
-            <p className={styles.ko}>{currentExpression?.ko}</p>
+            <p className="en">{currentExpression?.en}</p>
+            <p className="ko">{currentExpression?.ko}</p>
           </div>
 
           {currentExpression?.ex && (
@@ -154,8 +154,8 @@ export default function Expressions({
           )}
         </div>
         <div
-          className={`${styles.prevNextButton} ${
-            currentIndex === data.length - 1 ? styles.disabled : styles.active
+          className={`prevNextButton ${
+            currentIndex === data.length - 1 ? "disabled" : "active"
           }`}
           onClick={showNextExpression}
         >
