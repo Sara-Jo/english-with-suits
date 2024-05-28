@@ -11,12 +11,14 @@ import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRou
 import Link from "next/link";
 import supabase from "@/app/auth/supabaseClient";
 import { Expression } from "@/app/interface/expression";
+import Loading from "@/app/_components/Loading";
 
 export default function Expressions({
   params,
 }: {
   params: { episode: number };
 }) {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<Expression[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [currentExpression, setCurrentExpression] = useState<Expression | null>(
@@ -31,13 +33,13 @@ export default function Expressions({
         .from("expressions")
         .select("*")
         .eq("episode", params.episode);
-      console.log(data);
       if (error) {
         console.error("Error fetching expressions:", error);
       } else {
         setData(data);
         setCurrentExpression(data[0]);
       }
+      setIsLoading(false);
     };
 
     fetchExpressions();
@@ -94,6 +96,14 @@ export default function Expressions({
       console.log("No voices available.");
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className={styles.loadingMain}>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.main}>

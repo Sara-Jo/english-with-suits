@@ -115,3 +115,11 @@
   margin-left: 0.5rem;
   font-weight: 600;
 }
+
+.loadingMain {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
