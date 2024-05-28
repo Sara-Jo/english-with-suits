@@ -1,11 +1,14 @@
 "use client";
 
-import { EnKo, Expression, expressions } from "@/db/expressions";
+import { EnKo } from "@/db/expressions";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
+import { Expression } from "@/interface/expression";
+import { fetchExpressions } from "@/lib/fetchExpressions";
+import Loading from "@/app/_components/Loading";
 
 interface Word {
   text: string;
@@ -23,11 +26,11 @@ export default function Expressions({
 }: {
   params: { episode: number };
 }) {
-  const data: Expression = expressions[params.episode - 1];
-  const expLength = data.expressions.length;
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [data, setData] = useState<Expression[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [currentExpression, setCurrentExpression] = useState<EnKo>(
-    data.expressions[currentIndex]
+  const [currentExpression, setCurrentExpression] = useState<Expression | null>(
+    null
   );
   const [answer, setAnswer] = useState<string[]>([]);
   const [words, setWords] = useState<Word[]>([]);
@@ -36,11 +39,21 @@ export default function Expressions({
   const [isCorrect, setIsCorrect] = useState<boolean>(true);
 
   useEffect(() => {
-    const trimmedStr: string = currentExpression.en
-      .replace(/[.,?!~]/g, "")
-      .trim();
+    const fetchData = async () => {
+      const expressions = await fetchExpressions(params.episode);
+      setData(expressions);
+      setCurrentExpression(expressions[0]);
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, [params.episode]);
+
+  useEffect(() => {
+    const trimmedStr: string =
+      currentExpression?.en.replace(/[.,?!~]/g, "").trim() ?? "";
     const wordList = trimmedStr.split(" ");
-    const answer = currentExpression.en.match(/[\w']+|[.,?!~]/g) ?? [];
+    const answer = currentExpression?.en.match(/[\w']+|[.,?!~]/g) ?? [];
     setAnswer(answer);
     setWords(
       shuffleArray(wordList).map((w: string) => ({
@@ -53,7 +66,9 @@ export default function Expressions({
   }, [currentExpression]);
 
   useEffect(() => {
-    setCurrentExpression(data.expressions[currentIndex]);
+    if (data.length > 0) {
+      setCurrentExpression(data[currentIndex]);
+    }
   }, [currentIndex, data]);
 
   useEffect(() => {
@@ -113,15 +128,23 @@ export default function Expressions({
   };
 
   const showNextExpression = () => {
-    if (currentIndex === expLength - 1) return;
+    if (currentIndex === data.length - 1) return;
     setCurrentIndex((prevIndex) => prevIndex + 1);
     setShowPopUp(false);
   };
 
+  if (isLoading) {
+    return (
+      <div className="loadingMain">
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.main}>
       <div className={styles.index}>
-        {currentIndex + 1} / {expLength}
+        {currentIndex + 1} / {data.length}
       </div>
       <div className={styles.upperWrapper}>
         <div
@@ -149,7 +172,7 @@ export default function Expressions({
                 )
               )}
             </div>
-            <p className="ko">{currentExpression.ko}</p>
+            <p className="ko">{currentExpression?.ko}</p>
 
             {showPopUp && isCorrect ? (
               <div className={styles.greenCircle}></div>
@@ -181,7 +204,7 @@ export default function Expressions({
         </div>
         <div
           className={`prevNextButton ${
-            currentIndex === expLength - 1 ? "disabled" : "active"
+            currentIndex === data.length - 1 ? "disabled" : "active"
           }`}
           onClick={showNextExpression}
         >
