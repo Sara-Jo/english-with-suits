@@ -24,11 +24,11 @@ function MyPage() {
         const data = await fetchUserData(user.id);
         setUserData(data);
 
-        if (userData?.bookmarks && userData?.bookmarks.length > 0) {
-          const { data, error } = await supabase
+        if (data?.bookmarks && data.bookmarks.length > 0) {
+          const { data: expressions, error } = await supabase
             .from("expressions")
             .select("*")
-            .in("id", userData.bookmarks);
+            .in("id", data.bookmarks);
 
           if (error) {
             console.error(
@@ -36,7 +36,7 @@ function MyPage() {
               error.message
             );
           } else {
-            setBookmarkedExpressions(data);
+            setBookmarkedExpressions(expressions);
           }
         }
 
@@ -45,7 +45,7 @@ function MyPage() {
     };
 
     fetchUserAndBookmarks();
-  }, [user, userData]);
+  }, [user]);
 
   if (isLoading) {
     return (
