@@ -5,7 +5,7 @@ export const fetchUserData = async (userId: string): Promise<User | null> => {
   const { data, error } = await supabase
     .from("users")
     .select("*")
-    .eq("user_id", userId)
+    .eq("id", userId)
     .single();
   if (error) {
     console.error("Error fetching user data:", error.message);

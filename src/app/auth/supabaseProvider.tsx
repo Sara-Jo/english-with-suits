@@ -10,6 +10,7 @@ import {
 import { useRouter } from "next/navigation";
 import { User } from "@supabase/supabase-js";
 import supabase from "./supabaseClient";
+import insertNewUser from "./insertNewUser"; // Adjust the import based on your project structure
 
 type AuthContextType = {
   user: User | null;
@@ -34,7 +35,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const checkUser = async () => {
       const session = await supabase.auth.getSession();
       if (session.data.session?.user) {
-        setUser(session.data.session.user);
+        const loggedInUser = session.data.session.user;
+        setUser(loggedInUser);
+        await insertNewUser(loggedInUser); // Insert user if they don't exist
       } else {
         setUser(null);
       }
@@ -44,8 +47,16 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     checkUser();
 
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setUser(session?.user || null);
+      async (event, session) => {
+        const loggedInUser = session?.user || null;
+
+        if (loggedInUser && loggedInUser.id !== user?.id) {
+          setUser(loggedInUser);
+          await insertNewUser(loggedInUser); // Insert user if they don't exist
+        } else if (!loggedInUser && user) {
+          setUser(null);
+        }
+
         if (event === "SIGNED_OUT") {
           router.push("/login");
         }
