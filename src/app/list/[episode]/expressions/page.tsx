@@ -14,13 +14,15 @@ import { Expression, User } from "@/lib/interface";
 import Loading from "@/app/_components/Loading";
 import { fetchExpressions } from "@/lib/fetchExpressions";
 import { fetchUserData } from "@/lib/fetchUserData";
+import { useAuthContext } from "@/app/auth/supabaseProvider";
 
 export default function Expressions({
   params,
 }: {
   params: { episode: number };
 }) {
-  const [user, setUser] = useState<User>();
+  const { user } = useAuthContext();
+  const [userData, setUserData] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [data, setData] = useState<Expression[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -32,16 +34,13 @@ export default function Expressions({
 
   useEffect(() => {
     const fetchUser = async () => {
-      const userData = await supabase.auth.getUser();
-      if (userData) {
-        const user = await fetchUserData(userData.data.user?.id || "");
-        if (user) {
-          setUser(user);
-        }
+      if (user?.id) {
+        const fetchedUser = await fetchUserData(user.id);
+        setUserData(fetchedUser);
       }
     };
     fetchUser();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,15 +106,15 @@ export default function Expressions({
   };
 
   const handleBookmarkClick = async () => {
-    if (user) {
-      const updatedUser = { ...user };
+    if (userData && currentExpression) {
+      const updatedUser = { ...userData };
       if (!updatedUser.bookmarks) {
         updatedUser.bookmarks = [];
       }
       if (currentExpression) {
         updatedUser.bookmarks.push(currentExpression?.id);
         await supabase.from("users").upsert(updatedUser);
-        setUser(updatedUser);
+        setUserData(updatedUser);
       }
     }
   };
