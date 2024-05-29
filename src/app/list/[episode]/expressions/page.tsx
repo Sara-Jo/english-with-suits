@@ -31,6 +31,7 @@ export default function Expressions({
   );
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [exLink, setExLink] = useState<string>("");
+  const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -65,7 +66,11 @@ export default function Expressions({
     const encodedExpression = encodeURIComponent(currentExpression?.en || "");
     const url = `${baseUrl}${encodedExpression}/${language}?`;
     setExLink(url);
-  }, [currentExpression]);
+
+    if (userData && currentExpression) {
+      setIsBookmarked(userData.bookmarks.includes(currentExpression.id));
+    }
+  }, [currentExpression, userData]);
 
   useEffect(() => {
     const loadVoices = () => {
@@ -111,11 +116,18 @@ export default function Expressions({
       if (!updatedUser.bookmarks) {
         updatedUser.bookmarks = [];
       }
-      if (currentExpression) {
-        updatedUser.bookmarks.push(currentExpression?.id);
-        await supabase.from("users").upsert(updatedUser);
-        setUserData(updatedUser);
+
+      if (isBookmarked) {
+        updatedUser.bookmarks = updatedUser.bookmarks.filter(
+          (id) => id !== currentExpression.id
+        );
+      } else {
+        updatedUser.bookmarks.push(currentExpression.id);
       }
+
+      await supabase.from("users").upsert(updatedUser);
+      setUserData(updatedUser);
+      setIsBookmarked(!isBookmarked);
     }
   };
 
@@ -138,7 +150,12 @@ export default function Expressions({
           onClick={handleBookmarkClick}
           className={styles.bookmarkButtonWrapper}
         >
-          <BookmarkBorderRoundedIcon fontSize="large" />
+          {isBookmarked ? (
+            <BookmarkRoundedIcon fontSize="large" />
+          ) : (
+            <BookmarkBorderRoundedIcon fontSize="large" />
+          )}
+
           <p className={styles.bookmarkButtontext}>Bookmark</p>
         </div>
       </div>
