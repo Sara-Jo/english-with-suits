@@ -13,6 +13,7 @@ import supabase from "@/app/auth/supabaseClient";
 import { Expression, User } from "@/lib/interface";
 import Loading from "@/app/_components/Loading";
 import { fetchExpressions } from "@/lib/fetchExpressions";
+import { fetchUserData } from "@/lib/fetchUserData";
 
 export default function Expressions({
   params,
@@ -30,23 +31,16 @@ export default function Expressions({
   const [exLink, setExLink] = useState<string>("");
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchUser = async () => {
       const userData = await supabase.auth.getUser();
       if (userData) {
-        const { data, error } = await supabase
-          .from("users")
-          .select("*")
-          .eq("user_id", userData.data.user?.id)
-          .single();
-        console.log(data);
-        if (error) {
-          console.error("Error fetching user data:", error.message);
-        } else {
-          setUser(data);
+        const user = await fetchUserData(userData.data.user?.id || "");
+        if (user) {
+          setUser(user);
         }
       }
     };
-    fetchUserData();
+    fetchUser();
   }, []);
 
   useEffect(() => {
