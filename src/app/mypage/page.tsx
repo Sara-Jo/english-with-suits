@@ -111,7 +111,7 @@ function MyPage() {
               ))}
             </div>
           ) : (
-            <p>No bookmarks</p>
+            <p className={styles.noBookmarks}>No bookmarks</p>
           )}
         </div>
       </div>

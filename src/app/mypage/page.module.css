@@ -42,3 +42,7 @@
 .removeButton {
   cursor: pointer;
 }
+
+.noBookmarks {
+  opacity: 50%;
+}
