@@ -5,13 +5,14 @@ import withAuth from "../auth/withAuth";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { fetchUserData } from "@/lib/fetchUserData";
-import { Expression } from "@/lib/interface";
+import { Expression, User } from "@/lib/interface";
 import Loading from "../_components/Loading";
 import supabase from "../auth/supabaseClient";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 
 function MyPage() {
   const { user } = useAuthContext();
+  const [userData, setUserData] = useState<User | null>(null);
   const [bookmarkedExpressions, setBookmarkedExpressions] = useState<
     Expression[]
   >([]);
@@ -21,7 +22,7 @@ function MyPage() {
     const fetchUserAndBookmarks = async () => {
       if (user?.id) {
         const data = await fetchUserData(user.id);
-
+        setUserData(data);
         if (data?.bookmarks && data.bookmarks.length > 0) {
           const { data: expressions, error } = await supabase
             .from("expressions")
@@ -44,6 +45,28 @@ function MyPage() {
 
     fetchUserAndBookmarks();
   }, [user]);
+
+  const removeBookmark = async (id: number) => {
+    if (userData) {
+      const updatedBookmarks = userData.bookmarks.filter(
+        (bookmarkId: number) => bookmarkId !== id
+      );
+
+      const { error: updateError } = await supabase
+        .from("users")
+        .update({ bookmarks: updatedBookmarks })
+        .eq("id", userData.id);
+
+      if (updateError) {
+        console.error("Error updating bookmarks:", updateError.message);
+        return;
+      }
+
+      setBookmarkedExpressions((prev) =>
+        prev.filter((expression) => expression.id !== id)
+      );
+    }
+  };
 
   if (isLoading) {
     return (
@@ -77,7 +100,12 @@ function MyPage() {
                     </div>
                   </div>
                   <div className={styles.removeButtonWrapper}>
-                    <HighlightOffRoundedIcon />
+                    <div
+                      onClick={() => removeBookmark(expression.id)}
+                      className={styles.removeButton}
+                    >
+                      <HighlightOffRoundedIcon />
+                    </div>
                   </div>
                 </div>
               ))}

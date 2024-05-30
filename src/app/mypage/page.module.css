@@ -38,3 +38,7 @@
   display: flex;
   align-items: center;
 }
+
+.removeButton {
+  cursor: pointer;
+}
