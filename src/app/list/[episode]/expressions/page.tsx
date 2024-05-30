@@ -15,12 +15,14 @@ import Loading from "@/app/_components/Loading";
 import { fetchExpressions } from "@/lib/fetchExpressions";
 import { fetchUserData } from "@/lib/fetchUserData";
 import { useAuthContext } from "@/app/auth/supabaseProvider";
+import { useRouter } from "next/navigation";
 
 export default function Expressions({
   params,
 }: {
   params: { episode: number };
 }) {
+  const router = useRouter();
   const { user } = useAuthContext();
   const [userData, setUserData] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -111,6 +113,10 @@ export default function Expressions({
   };
 
   const handleBookmarkClick = async () => {
+    if (!userData) {
+      router.push("/login");
+    }
+
     if (userData && currentExpression) {
       const updatedUser = { ...userData };
       if (!updatedUser.bookmarks) {
