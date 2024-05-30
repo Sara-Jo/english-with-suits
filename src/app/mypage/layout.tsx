@@ -48,6 +48,8 @@ export default function ListLayout({
         <div onClick={() => router.back()} className={styles.backButton}>
           <ArrowBackIosIcon fontSize="large" />
         </div>
+
+        <p className={styles.title}>My Page</p>
         <div className={styles.loginButtonWrapper}>
           <p onClick={handleLogoutClick} className={styles.loginButton}>
             Logout

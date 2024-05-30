@@ -46,26 +46,26 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
     checkUser();
 
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        const loggedInUser = session?.user || null;
+    // const { data: authListener } = supabase.auth.onAuthStateChange(
+    //   async (event, session) => {
+    //     const loggedInUser = session?.user || null;
 
-        if (loggedInUser && loggedInUser.id !== user?.id) {
-          setUser(loggedInUser);
-          await insertNewUser(loggedInUser); // Insert user if they don't exist
-        } else if (!loggedInUser && user) {
-          setUser(null);
-        }
+    //     if (loggedInUser && loggedInUser.id !== user?.id) {
+    //       setUser(loggedInUser);
+    //       await insertNewUser(loggedInUser); // Insert user if they don't exist
+    //     } else if (!loggedInUser && user) {
+    //       setUser(null);
+    //     }
 
-        if (event === "SIGNED_OUT") {
-          router.push("/login");
-        }
-      }
-    );
+    //     if (event === "SIGNED_OUT") {
+    //       router.push("/login");
+    //     }
+    //   }
+    // );
 
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
+    // return () => {
+    //   authListener.subscription.unsubscribe();
+    // };
   }, []);
 
   const signOut = async () => {
