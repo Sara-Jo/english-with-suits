@@ -8,6 +8,7 @@ import { fetchUserData } from "@/lib/fetchUserData";
 import { Expression } from "@/lib/interface";
 import Loading from "../_components/Loading";
 import supabase from "../auth/supabaseClient";
+import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 
 function MyPage() {
   const { user } = useAuthContext();
@@ -63,13 +64,21 @@ function MyPage() {
         <p className={styles.title}>🔖 Bookmarks</p>
         <div className={styles.bookmarksList}>
           {bookmarkedExpressions.length > 0 ? (
-            <div className={styles.expression}>
+            <div>
               {bookmarkedExpressions.map((expression) => (
-                <div key={expression.id}>
-                  <p>{expression.season}</p>
-                  <p>{expression.episode}</p>
-                  <p>{expression.en}</p>
-                  <p>{expression.ko}</p>
+                <div key={expression.id} className={styles.expressionWrapper}>
+                  <div className={styles.episodeExpression}>
+                    <p className={styles.episode}>
+                      S{expression.season} EP{expression.episode}
+                    </p>
+                    <div className={styles.expression}>
+                      <p className={styles.en}>{expression.en}</p>
+                      <p className={styles.ko}>{expression.ko}</p>
+                    </div>
+                  </div>
+                  <div className={styles.removeButtonWrapper}>
+                    <HighlightOffRoundedIcon />
+                  </div>
                 </div>
               ))}
             </div>
