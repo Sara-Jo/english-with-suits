@@ -2,6 +2,8 @@ import { UUID } from "crypto";
 
 export interface Expression {
   id: number;
+  season: number;
+  episode: number;
   en: string;
   ko: string;
   ex?: string;

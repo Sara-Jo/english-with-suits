@@ -54,21 +54,30 @@ function MyPage() {
 
   return (
     <div className={styles.container}>
-      My Page<p>Welcome, {user?.email}</p>
-      <p>Bookmarks</p>
-      {bookmarkedExpressions.length > 0 ? (
-        <ul>
-          {bookmarkedExpressions.map((expression) => (
-            <li key={expression.id}>
-              <p>{expression.en}</p>
-              <p>{expression.ko}</p>
-              {expression.ex && <p>Ex: {expression.ex}</p>}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No bookmarks</p>
-      )}
+      <div>
+        <p className={styles.title}>🧑‍🎓 Profile</p>
+        <p>{user?.email}</p>
+      </div>
+
+      <div className={styles.bookmarksWrapper}>
+        <p className={styles.title}>🔖 Bookmarks</p>
+        <div className={styles.bookmarksList}>
+          {bookmarkedExpressions.length > 0 ? (
+            <div className={styles.expression}>
+              {bookmarkedExpressions.map((expression) => (
+                <div key={expression.id}>
+                  <p>{expression.season}</p>
+                  <p>{expression.episode}</p>
+                  <p>{expression.en}</p>
+                  <p>{expression.ko}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No bookmarks</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
