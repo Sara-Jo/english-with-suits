@@ -114,7 +114,7 @@ export default function Expressions({
 
   const handleBookmarkClick = async () => {
     if (!userData) {
-      router.push("/login");
+      router.push("/login", { scroll: false });
     }
 
     if (userData && currentExpression) {

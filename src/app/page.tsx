@@ -59,7 +59,7 @@ export default function Home() {
             </p>
           </>
         ) : (
-          <Link href="/login">
+          <Link href="/login" scroll={false}>
             <p className={styles.loginButton}>Sign in</p>
           </Link>
         )}

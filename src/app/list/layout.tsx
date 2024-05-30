@@ -62,7 +62,7 @@ export default function ListLayout({
             </>
           ) : (
             <p
-              onClick={() => router.push("/login")}
+              onClick={() => router.push("/login", { scroll: false })}
               className={styles.loginButton}
             >
               Sign in
