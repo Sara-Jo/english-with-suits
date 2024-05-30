@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
-import { Expression } from "@/lib/expression";
+import { Expression } from "@/lib/interface";
 import { fetchExpressions } from "@/lib/fetchExpressions";
 import Loading from "@/app/_components/Loading";
 
@@ -53,8 +53,9 @@ export default function Expressions({
     const trimmedStr: string =
       currentExpression?.en.replace(/[.,?!~]/g, "").trim() ?? "";
     const wordList = trimmedStr.split(" ");
-    const answer = currentExpression?.en.match(/[\w']+|[.,?!~]/g) ?? [];
-    setAnswer(answer);
+    const answerArr = currentExpression?.en.match(/[\w'-]+|[.,?!~]/g) ?? [];
+
+    setAnswer(answerArr);
     setWords(
       shuffleArray(wordList).map((w: string) => ({
         text: w,
@@ -62,7 +63,7 @@ export default function Expressions({
       }))
     );
 
-    setSelectedWords(getInitialSelectedWords(answer));
+    setSelectedWords(getInitialSelectedWords(answerArr));
   }, [currentExpression]);
 
   useEffect(() => {
