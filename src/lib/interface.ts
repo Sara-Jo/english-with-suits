@@ -16,3 +16,11 @@ export interface User {
   nickname: string;
   bookmarks: number[];
 }
+
+export interface Episode {
+  id: number;
+  episode: number;
+  title: string;
+  description: string;
+  image_url: string;
+}

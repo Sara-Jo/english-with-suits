@@ -5,6 +5,9 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    domains: ["marsfxkmubnnoqmlrbno.supabase.co", "localhost"],
+  },
 };
 
 export default nextConfig;

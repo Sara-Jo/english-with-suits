@@ -1,16 +1,37 @@
 .main {
-  margin-left: 4rem;
-  margin-right: 2rem;
-  font-size: 1.5rem;
-  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* height: 100vh; */
+  padding: 2rem;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .episodeTitle {
-  margin-bottom: 4rem;
+  font-size: 2rem;
+  margin: 5rem 0;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 1rem;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 
 .element {
-  margin-bottom: 1.5rem;
-  text-decoration: underline;
+  font-size: 1.5rem;
   cursor: pointer;
+  transition: color 0.3s;
+}
+
+.element:hover {
+  color: #ffd700;
+}
+
+.element::before {
+  content: "➜ ";
 }
