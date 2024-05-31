@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 import { Episode } from "@/lib/interface";
 import supabase from "../auth/supabaseClient";
 import Image from "next/image";
+import Loading from "../_components/Loading";
 
 export default function List() {
   const router = useRouter();
   const [episodes, setEpisodes] = useState<Episode[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchEpisodesData = async () => {
@@ -19,11 +21,20 @@ export default function List() {
         console.error("Error fetching episodes:", error);
       } else {
         setEpisodes(data);
+        setIsLoading(false);
       }
     };
 
     fetchEpisodesData();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="loadingMain">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>

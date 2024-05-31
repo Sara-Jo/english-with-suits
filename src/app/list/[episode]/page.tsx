@@ -4,10 +4,12 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import supabase from "@/app/auth/supabaseClient";
+import Loading from "@/app/_components/Loading";
 
 export default function Episode({ params }: { params: { episode: number } }) {
   const router = useRouter();
   const [episodeTitle, setEpisodeTitle] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchEpisodeTitle = async () => {
@@ -20,11 +22,20 @@ export default function Episode({ params }: { params: { episode: number } }) {
         console.error("Error fetching episodes:", error);
       } else {
         setEpisodeTitle(data[0].title);
+        setIsLoading(false);
       }
     };
 
     fetchEpisodeTitle();
   }, [params.episode]);
+
+  if (isLoading) {
+    return (
+      <div className="loadingMain">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.main}>
