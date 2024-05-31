@@ -17,7 +17,6 @@ export default function Episode({ params }: { params: { episode: number } }) {
         .from("episodes")
         .select("title")
         .eq("episode", params.episode);
-
       if (error) {
         console.error("Error fetching episodes:", error);
       } else {

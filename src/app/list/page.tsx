@@ -15,7 +15,10 @@ export default function List() {
 
   useEffect(() => {
     const fetchEpisodesData = async () => {
-      const { data, error } = await supabase.from("episodes").select("*");
+      const { data, error } = await supabase
+        .from("episodes")
+        .select("*")
+        .order("id", { ascending: true });
 
       if (error) {
         console.error("Error fetching episodes:", error);
