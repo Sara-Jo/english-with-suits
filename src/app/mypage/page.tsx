@@ -17,6 +17,7 @@ function MyPage() {
     IExpression[]
   >([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isRemoving, setIsRemoving] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchUserAndBookmarks = async () => {
@@ -38,7 +39,6 @@ function MyPage() {
             setBookmarkedExpressions(expressions);
           }
         }
-
         setIsLoading(false);
       }
     };
@@ -47,6 +47,10 @@ function MyPage() {
   }, [user]);
 
   const removeBookmark = async (id: number) => {
+    if (isRemoving) return;
+
+    setIsRemoving(true);
+
     if (userData) {
       const updatedBookmarks = userData.bookmarks.filter(
         (bookmarkId: number) => bookmarkId !== id
@@ -59,13 +63,19 @@ function MyPage() {
 
       if (updateError) {
         console.error("Error updating bookmarks:", updateError.message);
+        setIsRemoving(false);
         return;
       }
 
       setBookmarkedExpressions((prev) =>
         prev.filter((expression) => expression.id !== id)
       );
+      setUserData((prevUserData) =>
+        prevUserData ? { ...prevUserData, bookmarks: updatedBookmarks } : null
+      );
     }
+
+    setIsRemoving(false);
   };
 
   if (isLoading) {
@@ -78,13 +88,12 @@ function MyPage() {
 
   return (
     <div className={styles.container}>
-      <div>
-        <p className={styles.title}>🧑‍🎓 Profile</p>
-        <p>{user?.email}</p>
+      <div className={styles.profileSection}>
+        <h2 className={styles.title}>🧑‍🎓 Profile</h2>
+        <p className={styles.email}>{user?.email}</p>
       </div>
-
-      <div className={styles.bookmarksWrapper}>
-        <p className={styles.title}>🔖 Bookmarks</p>
+      <div className={styles.bookmarksSection}>
+        <h2 className={styles.title}>🔖 Bookmarks</h2>
         <div className={styles.bookmarksList}>
           {bookmarkedExpressions.length > 0 ? (
             <div>

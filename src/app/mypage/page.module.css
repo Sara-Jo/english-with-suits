@@ -1,24 +1,43 @@
 .container {
-  padding: 3rem;
+  padding: 2rem;
+  color: #ffffff;
+  background-color: #000000;
+  min-height: 100vh;
 }
 
-.bookmarksWrapper {
-  margin-top: 4rem;
+.profileSection {
+  margin-bottom: 5rem;
 }
 
 .title {
   font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ffd700;
+  padding-bottom: 0.5rem;
+}
+
+.email {
+  color: #ffd700;
+}
+
+.bookmarksSection {
+  margin-top: 2rem;
 }
 
 .bookmarksList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .expressionWrapper {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  align-items: center;
+  padding: 1rem;
+  background-color: #333333;
+  border-radius: 10px;
+  margin-bottom: 1rem;
 }
 
 .episodeExpression {
@@ -26,12 +45,18 @@
 }
 
 .episode {
-  margin-right: 1.5rem;
+  color: #ffd700;
+  margin-right: 1rem;
 }
 
 .en {
-  font-weight: 500;
+  font-weight: 600;
+  color: #ffffff;
   margin-bottom: 0.5rem;
+}
+
+.ko {
+  color: #dddddd;
 }
 
 .removeButtonWrapper {
@@ -41,8 +66,14 @@
 
 .removeButton {
   cursor: pointer;
+  color: #ffd700;
+  transition: color 0.3s;
+}
+
+.removeButton:hover {
+  color: #ff4040;
 }
 
 .noBookmarks {
-  opacity: 50%;
+  color: #aaaaaa;
 }
