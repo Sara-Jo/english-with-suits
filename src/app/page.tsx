@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "./auth/supabaseProvider";
 import Loading from "./_components/Loading";
 import ConfirmModal from "./_components/ConfirmModal";
+import DoubleArrowRoundedIcon from "@mui/icons-material/DoubleArrowRounded";
 
 export default function Home() {
   const router = useRouter();
@@ -65,12 +66,14 @@ export default function Home() {
         )}
       </div>
       <div className={styles.body}>
-        <h1>English With Suits</h1>
+        <h1 className={styles.englishWith}>English With</h1>
+        <h1 className={styles.suits}>SUITS</h1>
         <div
           onClick={() => router.push("/list")}
           className={styles.startButton}
         >
-          START
+          <DoubleArrowRoundedIcon fontSize="large" />
+          <p className={styles.startButtonText}>START</p>
         </div>
       </div>
 

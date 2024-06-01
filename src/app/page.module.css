@@ -26,21 +26,33 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 8rem;
+}
+
+.englishWith {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-right: 5rem;
+}
+
+.suits {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #e60000;
 }
 
 .startButton {
-  margin-top: 1rem;
-  font-size: 1.5rem;
+  margin-top: 2rem;
+  font-size: 2rem;
   font-weight: bold;
-  border: solid 1px;
-  border-radius: 1rem;
-  padding: 1rem 2rem;
-  background-color: white;
-  color: black;
+  display: flex;
+  align-items: center;
+}
 
-  &:hover {
-    cursor: pointer;
-  }
+.startButton:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+  cursor: pointer;
 }
