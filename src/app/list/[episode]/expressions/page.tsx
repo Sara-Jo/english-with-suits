@@ -10,7 +10,7 @@ import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRound
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
 import Link from "next/link";
 import supabase from "@/app/auth/supabaseClient";
-import { Expression, User } from "@/lib/interface";
+import { IExpression, IUser } from "@/lib/interface";
 import Loading from "@/app/_components/Loading";
 import { fetchExpressions } from "@/lib/fetchExpressions";
 import { fetchUserData } from "@/lib/fetchUserData";
@@ -24,13 +24,12 @@ export default function Expressions({
 }) {
   const router = useRouter();
   const { user } = useAuthContext();
-  const [userData, setUserData] = useState<User | null>(null);
+  const [userData, setUserData] = useState<IUser | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [data, setData] = useState<Expression[]>([]);
+  const [data, setData] = useState<IExpression[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [currentExpression, setCurrentExpression] = useState<Expression | null>(
-    null
-  );
+  const [currentExpression, setCurrentExpression] =
+    useState<IExpression | null>(null);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [exLink, setExLink] = useState<string>("");
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false);

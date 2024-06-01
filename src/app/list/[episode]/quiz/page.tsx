@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
-import { Expression } from "@/lib/interface";
+import { IExpression } from "@/lib/interface";
 import { fetchExpressions } from "@/lib/fetchExpressions";
 import Loading from "@/app/_components/Loading";
 
@@ -27,11 +27,10 @@ export default function Expressions({
   params: { episode: number };
 }) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [data, setData] = useState<Expression[]>([]);
+  const [data, setData] = useState<IExpression[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [currentExpression, setCurrentExpression] = useState<Expression | null>(
-    null
-  );
+  const [currentExpression, setCurrentExpression] =
+    useState<IExpression | null>(null);
   const [answer, setAnswer] = useState<string[]>([]);
   const [words, setWords] = useState<Word[]>([]);
   const [selectedWords, setSelectedWords] = useState<string[]>([]);

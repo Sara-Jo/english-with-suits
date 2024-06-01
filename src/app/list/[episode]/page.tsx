@@ -5,27 +5,31 @@ import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import supabase from "@/app/auth/supabaseClient";
 import Loading from "@/app/_components/Loading";
+import Image from "next/image";
+import { IEpisode } from "@/lib/interface";
 
 export default function Episode({ params }: { params: { episode: number } }) {
   const router = useRouter();
-  const [episodeTitle, setEpisodeTitle] = useState<string>("");
+  const [episode, setEpisode] = useState<IEpisode | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchEpisodeTitle = async () => {
+    const fetchEpisodeData = async () => {
       const { data, error } = await supabase
         .from("episodes")
-        .select("title")
-        .eq("episode", params.episode);
+        .select("*")
+        .eq("episode", params.episode)
+        .single();
+
       if (error) {
-        console.error("Error fetching episodes:", error);
+        console.error("Error fetching episode:", error);
       } else {
-        setEpisodeTitle(data[0].title);
+        setEpisode(data);
         setIsLoading(false);
       }
     };
 
-    fetchEpisodeTitle();
+    fetchEpisodeData();
   }, [params.episode]);
 
   if (isLoading) {
@@ -36,30 +40,50 @@ export default function Episode({ params }: { params: { episode: number } }) {
     );
   }
 
+  if (!episode) {
+    return <p>Episode not found.</p>;
+  }
+
   return (
     <div className={styles.main}>
       <h1 className={styles.episodeTitle}>
-        Episode {params.episode}: {episodeTitle}
+        Episode {params.episode}: {episode.title}
       </h1>
-      <div className={styles.links}>
-        <p
-          className={styles.element}
-          onClick={() => router.push(`${params.episode}/script`)}
-        >
-          📄 전체 스크립트 보기
-        </p>
-        <p
-          className={styles.element}
-          onClick={() => router.push(`${params.episode}/expressions`)}
-        >
-          ✍️ 주요 표현 공부하기
-        </p>
-        <p
-          className={styles.element}
-          onClick={() => router.push(`${params.episode}/quiz`)}
-        >
-          💯 Quiz
-        </p>
+      <div className={styles.content}>
+        <div className={styles.left}>
+          <div className={styles.imageWrapper}>
+            <Image
+              src={episode.image_url}
+              alt={episode.title}
+              // width={400}
+              // height={250}
+              layout="fill"
+              objectFit="cover"
+              className={styles.image}
+            />
+          </div>
+          <p className={styles.episodeDescription}>{episode.description}</p>
+        </div>
+        <div className={styles.right}>
+          <p
+            className={styles.element}
+            onClick={() => router.push(`${params.episode}/script`)}
+          >
+            📄 전체 스크립트 보기
+          </p>
+          <p
+            className={styles.element}
+            onClick={() => router.push(`${params.episode}/expressions`)}
+          >
+            ✍️ 주요 표현 공부하기
+          </p>
+          <p
+            className={styles.element}
+            onClick={() => router.push(`${params.episode}/quiz`)}
+          >
+            💯 Quiz
+          </p>
+        </div>
       </div>
     </div>
   );

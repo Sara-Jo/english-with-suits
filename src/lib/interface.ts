@@ -1,6 +1,6 @@
 import { UUID } from "crypto";
 
-export interface Expression {
+export interface IExpression {
   id: number;
   season: number;
   episode: number;
@@ -9,7 +9,7 @@ export interface Expression {
   ex?: string;
 }
 
-export interface User {
+export interface IUser {
   id: number;
   create_at: Date;
   user_id: UUID;
@@ -17,7 +17,7 @@ export interface User {
   bookmarks: number[];
 }
 
-export interface Episode {
+export interface IEpisode {
   id: number;
   episode: number;
   title: string;

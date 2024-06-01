@@ -3,14 +3,14 @@
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
-import { Episode } from "@/lib/interface";
+import { IEpisode } from "@/lib/interface";
 import supabase from "../auth/supabaseClient";
 import Image from "next/image";
 import Loading from "../_components/Loading";
 
 export default function List() {
   const router = useRouter();
-  const [episodes, setEpisodes] = useState<Episode[]>([]);
+  const [episodes, setEpisodes] = useState<IEpisode[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {

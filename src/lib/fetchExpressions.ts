@@ -1,9 +1,9 @@
 import supabase from "@/app/auth/supabaseClient";
-import { Expression } from "@/lib/interface";
+import { IExpression } from "@/lib/interface";
 
 export const fetchExpressions = async (
   episode: number
-): Promise<Expression[]> => {
+): Promise<IExpression[]> => {
   const { data, error } = await supabase
     .from("expressions")
     .select("*")
@@ -15,5 +15,5 @@ export const fetchExpressions = async (
     return [];
   }
 
-  return data as Expression[];
+  return data as IExpression[];
 };

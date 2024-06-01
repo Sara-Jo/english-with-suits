@@ -2,20 +2,56 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* height: 100vh; */
   padding: 2rem;
   text-align: center;
-  box-sizing: border-box;
 }
 
 .episodeTitle {
   font-size: 2rem;
-  margin: 5rem 0;
+  margin-bottom: 2rem;
   border-bottom: 2px solid #ffd700;
   padding-bottom: 1rem;
+  width: 100%;
+  text-align: center;
 }
 
-.links {
+.content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.left {
+  width: 50%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.imageWrapper {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.image {
+  border-radius: 10px;
+}
+
+.episodeDescription {
+  font-size: 1.2rem;
+  text-align: left;
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+.right {
+  width: 50%;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -26,6 +62,7 @@
   font-size: 1.5rem;
   cursor: pointer;
   transition: color 0.3s;
+  text-align: left;
 }
 
 .element:hover {

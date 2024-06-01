@@ -5,16 +5,16 @@ import withAuth from "../auth/withAuth";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { fetchUserData } from "@/lib/fetchUserData";
-import { Expression, User } from "@/lib/interface";
+import { IExpression, IUser } from "@/lib/interface";
 import Loading from "../_components/Loading";
 import supabase from "../auth/supabaseClient";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 
 function MyPage() {
   const { user } = useAuthContext();
-  const [userData, setUserData] = useState<User | null>(null);
+  const [userData, setUserData] = useState<IUser | null>(null);
   const [bookmarkedExpressions, setBookmarkedExpressions] = useState<
-    Expression[]
+    IExpression[]
   >([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
