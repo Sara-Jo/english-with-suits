@@ -125,11 +125,15 @@ a {
 .en {
   font-size: 2rem;
   font-weight: bold;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .ko {
   font-size: 1.5rem;
   margin-top: 2rem;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .prevNextButton {
