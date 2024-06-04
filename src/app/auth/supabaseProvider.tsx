@@ -72,7 +72,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const { error } = await supabase.auth.signOut();
     if (!error) {
       setUser(null);
-      router.push("/login");
+      router.push("/login", { scroll: false });
     }
   };
 
