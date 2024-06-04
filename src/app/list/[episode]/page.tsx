@@ -55,10 +55,10 @@ export default function Episode({ params }: { params: { episode: number } }) {
             <Image
               src={episode.image_url}
               alt={episode.title}
-              // width={400}
-              // height={250}
-              layout="fill"
-              objectFit="cover"
+              priority
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              style={{ objectFit: "cover" }}
               className={styles.image}
             />
           </div>

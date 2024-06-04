@@ -53,8 +53,10 @@ export default function List() {
               <Image
                 src={episode.image_url}
                 alt={episode.title}
-                width={300}
-                height={150}
+                priority
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                style={{ objectFit: "cover" }}
               />
             </div>
             <div className={styles.content}>
