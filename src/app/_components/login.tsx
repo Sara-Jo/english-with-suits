@@ -13,6 +13,7 @@ export default function Login() {
           theme: ThemeSupa,
           style: { container: { width: "300px" } },
         }}
+        theme="dark"
         providers={["google", "kakao", "github"]}
         redirectTo="http://localhost:3000"
       />

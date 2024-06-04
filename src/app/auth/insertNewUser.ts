@@ -18,6 +18,7 @@ const insertNewUser = async (user: User) => {
         {
           id: user.id,
           created_at: new Date().toISOString(),
+          email: user.email,
           bookmarks: [],
         },
       ]);
