@@ -1,5 +1,7 @@
+"use client";
+
 import Login from "../_components/Login";
-import withoutAuth from "../auth/withoutAuth";
+import withNoAuth from "../auth/withNoAuth";
 import styles from "./page.module.css";
 
 function Page() {
@@ -10,5 +12,4 @@ function Page() {
   );
 }
 
-// export default withoutAuth(Page);
-export default Page;
+export default withNoAuth(Page);

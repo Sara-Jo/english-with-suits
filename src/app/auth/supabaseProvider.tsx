@@ -10,7 +10,7 @@ import {
 import { useRouter } from "next/navigation";
 import { User } from "@supabase/supabase-js";
 import supabase from "./supabaseClient";
-import insertNewUser from "./insertNewUser"; // Adjust the import based on your project structure
+import insertNewUser from "./insertNewUser";
 
 type AuthContextType = {
   user: User | null;
@@ -37,7 +37,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       if (session.data.session?.user) {
         const loggedInUser = session.data.session.user;
         setUser(loggedInUser);
-        await insertNewUser(loggedInUser); // Insert user if they don't exist
+        await insertNewUser(loggedInUser);
       } else {
         setUser(null);
       }
