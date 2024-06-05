@@ -120,6 +120,7 @@ a {
 
 .disabled {
   opacity: 40%;
+  z-index: -1;
 }
 
 .en {
