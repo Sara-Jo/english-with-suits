@@ -8,6 +8,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: right;
+  padding: 1rem;
 }
 
 .upperWrapper {
@@ -55,4 +56,58 @@
   transform: scale(1.2);
   transition: transform 0.3s ease;
   cursor: pointer;
+}
+
+/* Media queries*/
+
+@media (max-width: 768px) {
+  .body {
+    padding: 4rem;
+  }
+
+  .englishWith {
+    font-size: 2.5rem;
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .suits {
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  .startButton {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .upperWrapper {
+    padding: 1rem;
+  }
+
+  .loginButton {
+    font-size: 1rem;
+  }
+
+  .body {
+    padding: 2rem;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .englishWith {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .suits {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .startButton {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
 }
