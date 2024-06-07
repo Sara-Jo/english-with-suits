@@ -103,37 +103,70 @@
   margin-bottom: 0.5rem;
 }
 
-.greenCircle {
-  width: 15rem;
-  height: 15rem;
-  border: 20px solid green;
-  border-radius: 50%;
+.correctPopup {
   position: absolute;
-  transform: translate(-50%, -50%);
-  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 15px solid green;
+  padding: 1.5rem;
+  border-radius: 2rem;
   animation: popUp 0.5s forwards;
 }
 
-.xSign {
-  position: relative;
-  top: -10rem;
+.correctText {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: green;
 }
 
-.xSign::before,
-.xSign::after {
-  content: "";
+.greenCircle {
+  width: 9rem;
+  height: 9rem;
+  border: 20px solid green;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: popUp 0.5s forwards;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.incorrectPopup {
   position: absolute;
-  width: 20px;
-  height: 15rem;
-  background-color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: white;
+  border: 15px solid red;
+  border-radius: 2rem;
+  animation: popUp 0.5s forwards;
 }
 
-.xSign::before {
-  transform: rotate(45deg);
+.incorrectText {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: red;
 }
 
-.xSign::after {
-  transform: rotate(-45deg);
+.xSign {
+  width: 9rem;
+  height: 9rem;
+  border: 20px solid red;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: popUp 0.5s forwards;
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
 
 @keyframes popUp {

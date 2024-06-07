@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { IExpression } from "@/lib/interface";
 import { fetchExpressions } from "@/lib/fetchExpressions";
 import Loading from "@/app/_components/Loading";
@@ -175,9 +177,19 @@ export default function Expressions({
             <p className="ko">{currentExpression?.ko}</p>
 
             {showPopUp && isCorrect ? (
-              <div className={styles.greenCircle}></div>
+              <div className={styles.correctPopup}>
+                <p className={styles.correctText}>Correct Answer!</p>
+                <div className={styles.greenCircle}>
+                  <CheckRoundedIcon sx={{ color: "green", fontSize: 100 }} />
+                </div>
+              </div>
             ) : showPopUp && !isCorrect ? (
-              <div className={styles.xSign}></div>
+              <div className={styles.incorrectPopup}>
+                <p className={styles.incorrectText}>Incorrect Answer!</p>
+                <div className={styles.xSign}>
+                  <ClearRoundedIcon sx={{ color: "red", fontSize: 100 }} />
+                </div>
+              </div>
             ) : (
               ""
             )}
