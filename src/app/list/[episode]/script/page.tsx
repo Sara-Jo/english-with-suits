@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import { pdfjs } from "react-pdf";
 import { Document, Page } from "react-pdf";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
 
@@ -16,6 +16,24 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 
 export default function Script({ params }: { params: { episode: number } }) {
   const router = useRouter();
+  const [numPages, setNumPages] = useState<number>();
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [pdfWidth, setPdfWidth] = useState<number>(600);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newWidth = window.innerWidth < 640 ? window.innerWidth * 0.9 : 600;
+      setPdfWidth(newWidth);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const downloadPdf = () => {
     const filePath = `/scripts/E${params.episode}.pdf`;
@@ -31,9 +49,6 @@ export default function Script({ params }: { params: { episode: number } }) {
 
     document.body.removeChild(link);
   };
-
-  const [numPages, setNumPages] = useState<number>();
-  const [pageNumber, setPageNumber] = useState<number>(1);
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
@@ -86,7 +101,7 @@ export default function Script({ params }: { params: { episode: number } }) {
         </div>
       </div>
 
-      <div>
+      <div className={styles.pdfViewer}>
         <Document
           file={`/scripts/E${params.episode}.pdf`}
           onLoadSuccess={onDocumentLoadSuccess}
@@ -95,6 +110,7 @@ export default function Script({ params }: { params: { episode: number } }) {
             pageNumber={pageNumber}
             renderAnnotationLayer={false}
             renderTextLayer={false}
+            width={pdfWidth}
           />
         </Document>
       </div>

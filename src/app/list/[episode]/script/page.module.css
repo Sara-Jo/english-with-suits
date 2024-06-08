@@ -38,16 +38,17 @@
   cursor: pointer;
 }
 
-.prevPageButton {
-  margin-left: 1rem;
+.prevPageButton .nextPageButton {
   display: flex;
   align-items: center;
 }
 
+.prevPageButton {
+  margin-left: 1rem;
+}
+
 .nextPageButton {
   margin-right: 1rem;
-  display: flex;
-  align-items: center;
 }
 
 .pageNum {
