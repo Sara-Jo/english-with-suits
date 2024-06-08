@@ -29,6 +29,7 @@
 
 .pageNumWrapper {
   display: flex;
+  align-items: center;
   margin-bottom: 1rem;
 }
 
@@ -38,16 +39,15 @@
   cursor: pointer;
 }
 
-.prevPageButton .nextPageButton {
+.prevPageButton {
   display: flex;
   align-items: center;
-}
-
-.prevPageButton {
   margin-left: 1rem;
 }
 
 .nextPageButton {
+  display: flex;
+  align-items: center;
   margin-right: 1rem;
 }
 
@@ -59,4 +59,16 @@
 .downloadText {
   font-weight: 600;
   margin-right: 0.5rem;
+}
+
+@media (max-width: 480px) {
+  .pageNumWrapper {
+    font-size: 0.8rem;
+  }
+
+  .pageNum {
+    font-size: 0.8rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }

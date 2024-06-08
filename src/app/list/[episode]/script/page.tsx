@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import { pdfjs } from "react-pdf";
@@ -15,7 +14,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 export default function Script({ params }: { params: { episode: number } }) {
-  const router = useRouter();
   const [numPages, setNumPages] = useState<number>();
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [pdfWidth, setPdfWidth] = useState<number>(600);
