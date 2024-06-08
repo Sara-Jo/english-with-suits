@@ -72,3 +72,23 @@
 .element::before {
   content: "➜ ";
 }
+
+/* Media queries*/
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .left {
+    width: 100%;
+    padding: 0;
+  }
+
+  .right {
+    width: 100%;
+    padding: 3rem 0 3rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid #ffd700;
+  }
+}
