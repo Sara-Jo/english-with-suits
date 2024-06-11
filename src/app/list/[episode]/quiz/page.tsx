@@ -145,7 +145,23 @@ export default function Expressions({
   return (
     <div className={styles.main}>
       <div className={styles.index}>
+        <div
+          className={`prevNextButtonSmall ${
+            currentIndex === 0 ? "disabled" : "active"
+          }`}
+          onClick={showPrevExpression}
+        >
+          <ArrowCircleLeftRoundedIcon sx={{ fontSize: 30 }} />
+        </div>
         {currentIndex + 1} / {data.length}
+        <div
+          className={`prevNextButtonSmall ${
+            currentIndex === data.length - 1 ? "disabled" : "active"
+          }`}
+          onClick={showNextExpression}
+        >
+          <ArrowCircleRightRoundedIcon sx={{ fontSize: 30 }} />
+        </div>
       </div>
       <div className={styles.upperWrapper}>
         <div
@@ -179,14 +195,20 @@ export default function Expressions({
               <div className={styles.correctPopup}>
                 <p className={styles.correctText}>Correct Answer!</p>
                 <div className={styles.greenCircle}>
-                  <CheckRoundedIcon sx={{ color: "green", fontSize: 100 }} />
+                  <CheckRoundedIcon
+                    className={styles.correctIcon}
+                    sx={{ color: "green", fontSize: 100 }}
+                  />
                 </div>
               </div>
             ) : showPopUp && !isCorrect ? (
               <div className={styles.incorrectPopup}>
                 <p className={styles.incorrectText}>Incorrect Answer!</p>
                 <div className={styles.xSign}>
-                  <ClearRoundedIcon sx={{ color: "red", fontSize: 100 }} />
+                  <ClearRoundedIcon
+                    className={styles.incorrectIcon}
+                    sx={{ color: "red", fontSize: 100 }}
+                  />
                 </div>
               </div>
             ) : (

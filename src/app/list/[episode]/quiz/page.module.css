@@ -1,6 +1,7 @@
 .main {
   padding-left: 2rem;
   padding-right: 2rem;
+  padding-bottom: 2rem;
   margin-top: 5rem;
   display: flex;
   flex-direction: column;
@@ -68,8 +69,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 2rem;
-  padding-right: 2rem;
   flex-wrap: wrap;
   margin-top: 5rem;
 }
@@ -177,5 +176,81 @@
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+/* Media query */
+@media (max-width: 600px) {
+  .main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 2rem;
+  }
+
+  .upperWrapper {
+    justify-content: center;
+  }
+
+  .expressionWrapper {
+    align-items: center;
+    text-align: center;
+  }
+
+  .index {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .words {
+    margin-top: 3rem;
+  }
+
+  .word {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin: 0.5rem;
+  }
+
+  .selectedWord {
+    font-size: 1.5rem;
+    height: 3rem;
+    margin-right: 0.6rem;
+  }
+
+  .punctuation {
+    font-size: 1.5rem;
+    height: 3rem;
+  }
+
+  .blank {
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0.6rem;
+  }
+
+  .correctText,
+  .incorrectText {
+    font-size: 1.2rem;
+  }
+
+  .greenCircle,
+  .xSign {
+    width: 7rem;
+    height: 7rem;
+    border-width: 15px;
+  }
+
+  .correctPopup,
+  .incorrectPopup {
+    padding: 1rem;
+  }
+
+  .correctIcon,
+  .incorrectIcon {
+    font-size: 5rem !important;
   }
 }
