@@ -91,3 +91,67 @@
   margin-left: 0.5rem;
   font-weight: 600;
 }
+
+/* Media query */
+@media (max-width: 600px) {
+  .main {
+    margin-top: 1rem;
+  }
+
+  .upperWrapper {
+    grid-template-columns: 1fr;
+    margin-bottom: 3rem;
+  }
+
+  .index {
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .bookmarkButtonWrapper {
+    padding-right: 0;
+    margin-bottom: 3rem;
+    order: -1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .bookmarkIcon {
+    font-size: 1.5rem !important;
+  }
+
+  .bookmarkButtontext {
+    margin-left: 0.2rem;
+  }
+
+  .speakButton {
+    margin-bottom: 0;
+  }
+
+  .lowerWrapper {
+    flex-direction: column;
+    align-items: center;
+    /* text-align: center; */
+  }
+
+  .expressionWrapper {
+    padding: 0.5rem;
+  }
+
+  .exWrapper {
+    width: 100%;
+    border-top: 1px solid white;
+    padding-top: 2rem;
+  }
+
+  .exLinkWrapper {
+    justify-content: center;
+  }
+
+  .exTitle,
+  .exLinkText {
+    font-size: 0.9rem;
+  }
+}

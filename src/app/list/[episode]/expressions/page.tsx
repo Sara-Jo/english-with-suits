@@ -149,16 +149,38 @@ export default function Expressions({
       <div className={styles.upperWrapper}>
         <div></div>
         <div className={styles.index}>
+          <div
+            className={`prevNextButtonSmall ${
+              currentIndex === 0 ? "disabled" : "active"
+            }`}
+            onClick={showPrevExpression}
+          >
+            <ArrowCircleLeftRoundedIcon sx={{ fontSize: 30 }} />
+          </div>
           {currentIndex + 1} / {data.length || 0}
+          <div
+            className={`prevNextButtonSmall ${
+              currentIndex === data.length - 1 ? "disabled" : "active"
+            }`}
+            onClick={showNextExpression}
+          >
+            <ArrowCircleRightRoundedIcon sx={{ fontSize: 30 }} />
+          </div>
         </div>
         <div
           onClick={handleBookmarkClick}
           className={styles.bookmarkButtonWrapper}
         >
           {isBookmarked ? (
-            <BookmarkRoundedIcon fontSize="large" />
+            <BookmarkRoundedIcon
+              className={styles.bookmarkIcon}
+              fontSize="large"
+            />
           ) : (
-            <BookmarkBorderRoundedIcon fontSize="large" />
+            <BookmarkBorderRoundedIcon
+              className={styles.bookmarkIcon}
+              fontSize="large"
+            />
           )}
 
           <p className={styles.bookmarkButtontext}>Bookmark</p>

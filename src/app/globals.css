@@ -143,3 +143,26 @@ a {
   padding: 0.7rem 1.5rem;
   margin-top: 2rem;
 }
+
+.prevNextButtonSmall {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .en {
+    font-size: 1.5rem;
+  }
+
+  .ko {
+    font-size: 1.2rem;
+  }
+
+  .prevNextButton {
+    display: none;
+  }
+
+  .prevNextButtonSmall {
+    display: flex;
+    align-items: center;
+  }
+}
