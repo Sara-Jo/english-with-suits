@@ -1,6 +1,6 @@
 "use client";
 
-import Login from "../_components/Login";
+import Login from "../_components/login";
 import withNoAuth from "../auth/withNoAuth";
 import styles from "./page.module.css";
 

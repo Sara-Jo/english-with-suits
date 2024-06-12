@@ -1,7 +1,7 @@
 import supabase from "@/app/auth/supabaseClient";
-import { User } from "./interface";
+import { IUser } from "./interface";
 
-export const fetchUserData = async (userId: string): Promise<User | null> => {
+export const fetchUserData = async (userId: string): Promise<IUser | null> => {
   const { data, error } = await supabase
     .from("users")
     .select("*")
@@ -11,5 +11,5 @@ export const fetchUserData = async (userId: string): Promise<User | null> => {
     console.error("Error fetching user data:", error.message);
     return null;
   }
-  return data as User;
+  return data as IUser;
 };
