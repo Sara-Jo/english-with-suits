@@ -47,6 +47,7 @@
 .episode {
   color: #ffd700;
   margin-right: 1rem;
+  min-width: 3.1rem;
 }
 
 .en {
