@@ -75,13 +75,18 @@ export default function Expressions({
 
   useEffect(() => {
     const loadVoices = () => {
-      const availableVoices = speechSynthesis.getVoices();
-      setVoices(availableVoices);
+      let availableVoices = speechSynthesis.getVoices();
+      if (availableVoices.length === 0) {
+        speechSynthesis.addEventListener("voiceschanged", () => {
+          availableVoices = speechSynthesis.getVoices();
+          setVoices(availableVoices);
+        });
+      } else {
+        setVoices(availableVoices);
+      }
     };
 
     loadVoices();
-
-    speechSynthesis.addEventListener("voiceschanged", loadVoices);
 
     return () => {
       speechSynthesis.removeEventListener("voiceschanged", loadVoices);
@@ -100,10 +105,12 @@ export default function Expressions({
     setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 
-  const speakExpression = async () => {
+  const speakExpression = () => {
     if (voices.length > 0) {
       const utterance = new SpeechSynthesisUtterance();
-      utterance.voice = await speechSynthesis.getVoices()[1];
+      const preferredVoice =
+        voices.find((voice) => voice.lang === "en-US") || voices[0];
+      utterance.voice = preferredVoice;
       utterance.text = currentExpression?.en || "";
       speechSynthesis.speak(utterance);
     } else {
