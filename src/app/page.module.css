@@ -3,17 +3,43 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(245, 246, 252, 0.11) 0%,
-      rgba(0, 0, 0, 0.7) 50%,
-      black 100%
-    ),
-    url("/image/suits-poster.webp");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-image: url("/image/suits-poster-small.jpg");
   background-position: right;
+  background-size: 70rem;
   padding: 1rem;
+}
+
+.main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(245, 246, 252, 0.05) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+.main::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to left,
+    rgba(245, 246, 252, 0.05) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
 }
 
 .upperWrapper {
@@ -41,12 +67,14 @@
   font-size: 3rem;
   font-weight: bold;
   margin-right: 5rem;
+  z-index: 1;
 }
 
 .suits {
   font-size: 5rem;
   font-weight: bold;
   color: var(--red);
+  z-index: 1;
 }
 
 .startButton {
@@ -55,6 +83,7 @@
   font-weight: bold;
   display: flex;
   align-items: center;
+  z-index: 1;
 }
 
 .startButton:hover {
@@ -69,11 +98,11 @@
   .main {
     background-image: linear-gradient(
         to bottom,
-        rgba(245, 246, 252, 0.11) 0%,
-        rgba(0, 0, 0, 0.7) 50%,
-        black 100%
+        rgba(245, 246, 252, 0.05) 0%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.5) 100%
       ),
-      url("/image/suits-poster-small.webp");
+      url("/image/suits-poster-small.jpg");
     background-position: top;
     background-size: 70rem;
   }
