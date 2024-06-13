@@ -76,7 +76,7 @@
   display: flex;
   align-items: center;
   margin-top: 2rem;
-  border: 1px white solid;
+  border: 1px var(--white) solid;
   padding: 0.2rem 0.5rem;
   border-radius: 1rem;
   width: max-content;
@@ -141,7 +141,7 @@
 
   .exWrapper {
     width: 100%;
-    border-top: 1px solid white;
+    border-top: 1px solid var(--white);
     padding-top: 2rem;
   }
 

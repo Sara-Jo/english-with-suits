@@ -80,15 +80,15 @@
   font-size: 1.2rem;
   margin: 1rem;
   cursor: pointer;
-  background-color: white;
-  color: black;
+  background-color: var(--white);
+  color: var(--background-color);
   font-weight: 600;
 }
 
 .resetButton {
   margin-top: 2.5rem;
   cursor: pointer;
-  background-color: green;
+  background-color: var(--green);
   padding: 0.5rem 1rem;
   border-radius: 1rem;
 }
@@ -108,8 +108,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
-  border: 15px solid green;
+  background-color: var(--white);
+  border: 15px solid var(--green);
   padding: 1.5rem;
   border-radius: 2rem;
   animation: popUp 0.5s forwards;
@@ -119,13 +119,13 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  color: green;
+  color: var(--green);
 }
 
 .greenCircle {
   width: 9rem;
   height: 9rem;
-  border: 20px solid green;
+  border: 20px solid var(--green);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
@@ -142,8 +142,8 @@
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background-color: white;
-  border: 15px solid red;
+  background-color: var(--white);
+  border: 15px solid var(--red);
   border-radius: 2rem;
   animation: popUp 0.5s forwards;
 }
@@ -152,13 +152,13 @@
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
-  color: red;
+  color: var(--red);
 }
 
 .xSign {
   width: 9rem;
   height: 9rem;
-  border: 20px solid red;
+  border: 20px solid var(--red);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;

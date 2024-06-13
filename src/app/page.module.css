@@ -46,7 +46,7 @@
 .suits {
   font-size: 5rem;
   font-weight: bold;
-  color: #e60000;
+  color: var(--red);
 }
 
 .startButton {

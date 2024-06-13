@@ -21,8 +21,8 @@
   justify-content: center;
   cursor: pointer;
   margin-bottom: 2rem;
-  background-color: white;
-  color: black;
+  background-color: var(--white);
+  color: var(--background-color);
   padding: 0.2rem 0.7rem;
   border-radius: 1rem;
 }
