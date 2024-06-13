@@ -92,7 +92,7 @@
   font-weight: 600;
 }
 
-/* Media query */
+/* Media queries */
 @media (max-width: 600px) {
   .main {
     margin-top: 1rem;

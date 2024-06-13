@@ -179,7 +179,7 @@
   }
 }
 
-/* Media query */
+/* Media queries */
 @media (max-width: 600px) {
   .main {
     padding-left: 1rem;
