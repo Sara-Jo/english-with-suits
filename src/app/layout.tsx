@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./auth/supabaseProvider";
 import { Suspense } from "react";
 import Loading from "./_components/Loading";
 
-const archivo = Archivo({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "English with Suits",
@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={archivo.className}>
+      <body className={inter.className}>
         <AuthProvider>
           <Suspense fallback={<Loading />}>
             <div>{auth}</div>
