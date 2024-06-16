@@ -49,10 +49,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     // const { data: authListener } = supabase.auth.onAuthStateChange(
     //   async (event, session) => {
     //     const loggedInUser = session?.user || null;
-
+    //     console.log(loggedInUser);
     //     if (loggedInUser && loggedInUser.id !== user?.id) {
     //       setUser(loggedInUser);
+    //       console.log("a");
     //       await insertNewUser(loggedInUser); // Insert user if they don't exist
+    //       console.log("b");
     //     } else if (!loggedInUser && user) {
     //       setUser(null);
     //     }
@@ -62,10 +64,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     //     }
     //   }
     // );
-
-    // return () => {
-    //   authListener.subscription.unsubscribe();
-    // };
   }, []);
 
   const signOut = async () => {
