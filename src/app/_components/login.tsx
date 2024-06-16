@@ -41,11 +41,11 @@ export default function Login() {
         supabaseClient={supabase}
         appearance={{
           theme: ThemeSupa,
-          style: { container: { width: "300px" } },
+          style: { container: { width: "300px" }, input: { color: "white" } },
         }}
         theme="dark"
         providers={["google", "kakao", "github"]}
-        redirectTo="http://localhost:3000"
+        redirectTo="http://localhost:3000/login/reset-password"
       />
     </div>
   );
