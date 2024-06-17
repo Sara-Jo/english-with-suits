@@ -45,7 +45,7 @@ export default function Login() {
         }}
         theme="dark"
         providers={["google", "kakao", "github"]}
-        redirectTo="http://localhost:3000/login/reset-password"
+        redirectTo="https://english-with-suits.vercel.app/login/reset-password"
       />
     </div>
   );
