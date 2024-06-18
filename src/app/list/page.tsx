@@ -4,9 +4,9 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { IEpisode } from "@/lib/interface";
-import supabase from "../auth/supabaseClient";
 import Image from "next/image";
 import Loading from "../_components/Loading";
+import { fetchEpisodesData } from "@/lib/fetchEpisodeData";
 
 export default function List() {
   const router = useRouter();
@@ -14,21 +14,13 @@ export default function List() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchEpisodesData = async () => {
-      const { data, error } = await supabase
-        .from("episodes")
-        .select("*")
-        .order("id", { ascending: true });
-
-      if (error) {
-        console.error("Error fetching episodes:", error);
-      } else {
-        setEpisodes(data);
-        setIsLoading(false);
-      }
+    const getEpisodeData = async () => {
+      const episodesData = await fetchEpisodesData();
+      setEpisodes(episodesData);
+      setIsLoading(false);
     };
 
-    fetchEpisodesData();
+    getEpisodeData();
   }, []);
 
   if (isLoading) {
