@@ -14,6 +14,7 @@ import { IExpression, IUser } from "@/lib/interface";
 import { fetchUserData } from "@/lib/fetchUserData";
 import { useAuthContext } from "@/app/auth/supabaseProvider";
 import { useRouter } from "next/navigation";
+import Head from "next/head";
 
 export default function ExpressionClient({
   expressions,

@@ -8,10 +8,27 @@ import Loading from "./_components/Loading";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "English with Suits",
-  description: "Learn English with Suits",
-  icons: {
-    icon: "/favicon.ico",
+  title: "English With Suits",
+  description: "Suits로 배우는 비즈니스 영어회화",
+  openGraph: {
+    title: "English With Suits",
+    description: "Suits로 배우는 비즈니스 영어회화",
+    images: [
+      {
+        url: "/image/suits-poster.jpg",
+        width: 800,
+        height: 600,
+        alt: "Suits Poster",
+      },
+    ],
+  },
+  twitter: {
+    title: "English With Suits",
+    description: "Suits로 배우는 비즈니스 영어회화",
+    images: {
+      url: "/image/suits-poster.jpg",
+      alt: "Suits Poster",
+    },
   },
 };
 
@@ -24,6 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head />
       <body className={inter.className}>
         <AuthProvider>
           <Suspense fallback={<Loading />}>

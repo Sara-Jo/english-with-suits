@@ -10,14 +10,6 @@ export async function generateStaticParams() {
   }));
 }
 
-export const generateMetadata = (currentExpression: IExpression | null) => {
-  const expression = currentExpression?.en || "English With Suits";
-
-  return {
-    expression,
-  };
-};
-
 export default async function Expressions({
   params,
 }: {
