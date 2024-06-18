@@ -16,6 +16,14 @@ import { fetchExpressions } from "@/lib/fetchExpressions";
 import { fetchUserData } from "@/lib/fetchUserData";
 import { useAuthContext } from "@/app/auth/supabaseProvider";
 import { useRouter } from "next/navigation";
+import { fetchEpisodesData } from "@/lib/fetchEpisodeData";
+
+export async function generateStaticParams() {
+  const episode = await fetchEpisodesData();
+  return episode.map((episode) => ({
+    episode: episode.episode.toString(),
+  }));
+}
 
 export default function Expressions({
   params,
@@ -189,7 +197,6 @@ export default function Expressions({
               fontSize="large"
             />
           )}
-
           <p className={styles.bookmarkButtontext}>Bookmark</p>
         </div>
       </div>
