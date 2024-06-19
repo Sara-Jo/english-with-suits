@@ -1,17 +1,13 @@
 import supabase from "@/app/auth/supabaseClient";
 import EspisodeClient from "./EpisodeClient";
-import { IEpisode } from "@/lib/interface";
+import { fetchEpisode } from "@/lib/fetchEpisode";
 
 export default async function Episode({
   params,
 }: {
   params: { episode: number };
 }) {
-  const { data: episode } = await supabase
-    .from("episodes")
-    .select("*")
-    .eq("episode", params.episode)
-    .single();
+  const episode = await fetchEpisode(params.episode);
 
   return <EspisodeClient episode={episode} />;
 }

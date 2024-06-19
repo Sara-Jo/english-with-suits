@@ -5,7 +5,11 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { IEpisode } from "@/lib/interface";
 
-export default function EspisodeClient({ episode }: { episode: IEpisode }) {
+export default function EspisodeClient({
+  episode,
+}: {
+  episode: IEpisode | null;
+}) {
   const router = useRouter();
 
   if (!episode) {
