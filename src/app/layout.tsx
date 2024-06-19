@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: "Suits로 배우는 비즈니스 영어회화",
     images: [
       {
-        url: "/image/suits-poster.jpg",
+        url: process.env.POSTER_IMAGE as string,
         width: 800,
         height: 600,
         alt: "Suits Poster",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "English With Suits",
     description: "Suits로 배우는 비즈니스 영어회화",
     images: {
-      url: "/image/suits-poster.jpg",
+      url: process.env.POSTER_IMAGE as string,
       alt: "Suits Poster",
     },
   },
