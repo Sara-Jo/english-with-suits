@@ -1,4 +1,3 @@
-import supabase from "@/app/auth/supabaseClient";
 import EspisodeClient from "./EpisodeClient";
 import { fetchEpisode } from "@/lib/fetchEpisode";
 
