@@ -1,4 +1,3 @@
-import { IExpression } from "@/lib/interface";
 import { fetchEpisodesData } from "@/lib/fetchEpisodeData";
 import ExpressionClient from "./ExpressionClient";
 import { fetchExpressions } from "@/lib/fetchExpressions";
