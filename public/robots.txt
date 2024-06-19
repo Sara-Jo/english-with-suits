@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://english-with-suits.vercel.app/
+
+# Sitemaps
+Sitemap: https://english-with-suits.vercel.app/sitemap.xml
