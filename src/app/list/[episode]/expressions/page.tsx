@@ -1,9 +1,9 @@
-import { fetchEpisodesData } from "@/lib/fetchEpisodeData";
 import ExpressionClient from "./ExpressionClient";
 import { fetchExpressions } from "@/lib/fetchExpressions";
+import { fetchAllEpisodes } from "@/lib/fetchAllEpisodes";
 
 export async function generateStaticParams() {
-  const episode = await fetchEpisodesData();
+  const episode = await fetchAllEpisodes();
   return episode.map((episode) => ({
     episode: episode.episode.toString(),
   }));

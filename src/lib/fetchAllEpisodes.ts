@@ -1,7 +1,7 @@
 import supabase from "@/app/auth/supabaseClient";
 import { IEpisode } from "./interface";
 
-export const fetchEpisodesData = async (): Promise<IEpisode[]> => {
+export const fetchAllEpisodes = async (): Promise<IEpisode[]> => {
   const { data, error } = await supabase
     .from("episodes")
     .select("*")

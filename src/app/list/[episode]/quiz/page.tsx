@@ -1,9 +1,9 @@
 import { fetchExpressions } from "@/lib/fetchExpressions";
 import QuizClient from "./QuizClient";
-import { fetchEpisodesData } from "@/lib/fetchEpisodeData";
+import { fetchAllEpisodes } from "@/lib/fetchAllEpisodes";
 
 export async function generateStaticParams() {
-  const episode = await fetchEpisodesData();
+  const episode = await fetchAllEpisodes();
   return episode.map((episode) => ({
     episode: episode.episode.toString(),
   }));

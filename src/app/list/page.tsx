@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { IEpisode } from "@/lib/interface";
 import Image from "next/image";
 import Loading from "../_components/Loading";
-import { fetchEpisodesData } from "@/lib/fetchEpisodeData";
+import { fetchAllEpisodes } from "@/lib/fetchAllEpisodes";
 
 export default function List() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export default function List() {
 
   useEffect(() => {
     const getEpisodeData = async () => {
-      const episodesData = await fetchEpisodesData();
+      const episodesData = await fetchAllEpisodes();
       setEpisodes(episodesData);
       setIsLoading(false);
     };
