@@ -2,7 +2,7 @@
   padding-left: 2rem;
   padding-right: 2rem;
   padding-bottom: 2rem;
-  margin-top: 5rem;
+  padding-top: 12rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +10,6 @@
 }
 
 .upperWrapper {
-  min-height: 25rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -184,7 +183,6 @@
   .main {
     padding-left: 1rem;
     padding-right: 1rem;
-    margin-top: 2rem;
   }
 
   .upperWrapper {
@@ -252,5 +250,11 @@
   .correctIcon,
   .incorrectIcon {
     font-size: 5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding-top: 7rem;
   }
 }

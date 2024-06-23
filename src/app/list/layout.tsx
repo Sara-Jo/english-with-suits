@@ -45,7 +45,10 @@ export default function ListLayout({
     <section>
       <div className={styles.container}>
         <div onClick={() => router.back()} className={styles.backButton}>
-          <ArrowBackIosIcon fontSize="large" />
+          <ArrowBackIosIcon
+            className={styles.backButtonIcon}
+            fontSize="large"
+          />
         </div>
         <div className={styles.loginButtonWrapper}>
           {user ? (

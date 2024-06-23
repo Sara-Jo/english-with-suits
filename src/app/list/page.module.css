@@ -70,3 +70,10 @@
   line-height: 1.5;
   max-height: 6em;
 }
+
+/* Media queries */
+@media (max-width: 480px) {
+  .container {
+    padding: 5rem 2rem 2rem 2rem;
+  }
+}

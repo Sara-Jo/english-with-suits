@@ -1,7 +1,7 @@
 .main {
   padding-left: 2rem;
   padding-right: 2rem;
-  margin-top: 5rem;
+  padding-top: 12rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,7 +42,6 @@
 }
 
 .lowerWrapper {
-  min-height: 25rem;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -94,10 +93,6 @@
 
 /* Media queries */
 @media (max-width: 600px) {
-  .main {
-    margin-top: 1rem;
-  }
-
   .upperWrapper {
     grid-template-columns: 1fr;
     margin-bottom: 3rem;
@@ -152,5 +147,11 @@
   .exTitle,
   .exLinkText {
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding-top: 9rem;
   }
 }
