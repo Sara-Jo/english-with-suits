@@ -2,6 +2,10 @@
   display: flex;
   justify-content: space-between;
   padding: 2rem;
+  position: fixed;
+  width: 100%;
+  background-color: var(--background-color);
+  z-index: 100;
 }
 
 .backButton {
