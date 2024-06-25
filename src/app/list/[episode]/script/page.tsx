@@ -3,6 +3,7 @@
 import styles from "./page.module.css";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import { pdfjs } from "react-pdf";
+import "react-pdf/dist/esm/Page/TextLayer.css";
 import { Document, Page } from "react-pdf";
 import { useEffect, useState } from "react";
 import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
@@ -107,7 +108,7 @@ export default function Script({ params }: { params: { episode: number } }) {
           <Page
             pageNumber={pageNumber}
             renderAnnotationLayer={false}
-            renderTextLayer={false}
+            renderTextLayer={true}
             width={pdfWidth}
           />
         </Document>
