@@ -68,15 +68,39 @@ export default function Script({ params }: { params: { episode: number } }) {
   };
 
   const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    setDragStartX(event.clientX);
-    setDragStartPage(pageNumber);
+    startDrag(event.clientX);
   };
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    continueDrag(event.clientX);
+  };
+
+  const handleMouseUp = () => {
+    endDrag();
+  };
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    startDrag(event.touches[0].clientX);
+  };
+
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    continueDrag(event.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    endDrag();
+  };
+
+  const startDrag = (clientX: number) => {
+    setIsDragging(true);
+    setDragStartX(clientX);
+    setDragStartPage(pageNumber);
+  };
+
+  const continueDrag = (clientX: number) => {
     if (!isDragging) return;
 
-    const dragDistance = dragStartX - event.clientX;
+    const dragDistance = dragStartX - clientX;
     const pagesMoved = Math.round(dragDistance / 100);
     const changedPage = dragStartPage + pagesMoved;
 
@@ -85,7 +109,7 @@ export default function Script({ params }: { params: { episode: number } }) {
     else setPageNumber(changedPage);
   };
 
-  const handleMouseUp = () => {
+  const endDrag = () => {
     setIsDragging(false);
   };
 
@@ -132,6 +156,9 @@ export default function Script({ params }: { params: { episode: number } }) {
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <Document
           file={`/scripts/E${params.episode}.pdf`}
