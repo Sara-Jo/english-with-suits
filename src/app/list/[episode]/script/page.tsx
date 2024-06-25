@@ -5,7 +5,7 @@ import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import { pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import { Document, Page } from "react-pdf";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
 
@@ -18,6 +18,10 @@ export default function Script({ params }: { params: { episode: number } }) {
   const [numPages, setNumPages] = useState<number>();
   const [pageNumber, setPageNumber] = useState<number>(1);
   const [pdfWidth, setPdfWidth] = useState<number>(600);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [dragStartX, setDragStartX] = useState<number>(0);
+  const [dragStartPage, setDragStartPage] = useState<number>(1);
+  const pdfViewerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -63,6 +67,28 @@ export default function Script({ params }: { params: { episode: number } }) {
     setPageNumber((prev: number) => prev + 1);
   };
 
+  const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    setDragStartX(event.clientX);
+    setDragStartPage(pageNumber);
+  };
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+
+    const dragDistance = dragStartX - event.clientX;
+    const pagesMoved = Math.round(dragDistance / 100);
+    const changedPage = dragStartPage + pagesMoved;
+
+    if (changedPage < 1) setPageNumber(1);
+    else if (numPages && changedPage > numPages) setPageNumber(numPages);
+    else setPageNumber(changedPage);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
   return (
     <div className={styles.main}>
       <div className={styles.downloadButtonWrapper}>
@@ -100,7 +126,13 @@ export default function Script({ params }: { params: { episode: number } }) {
         </div>
       </div>
 
-      <div className={styles.pdfViewer}>
+      <div
+        className={styles.pdfViewer}
+        ref={pdfViewerRef}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+      >
         <Document
           file={`/scripts/E${params.episode}.pdf`}
           onLoadSuccess={onDocumentLoadSuccess}
