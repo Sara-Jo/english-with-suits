@@ -53,8 +53,8 @@ export default function ListLayout({
               fontSize="large"
             />
           </div>
-          <ThemeToggle />
           <div className={styles.loginButtonWrapper}>
+            <ThemeToggle />
             {user ? (
               <>
                 <p

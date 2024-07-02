@@ -7,6 +7,7 @@
   background-image: url("/image/suits-poster-small.jpg");
   background-position: right;
   background-size: 70rem;
+  background-color: black;
   padding: 1rem;
 }
 
@@ -68,6 +69,7 @@
 }
 
 .englishWith {
+  color: white;
   font-size: 3rem;
   margin-right: 5rem;
 }
@@ -78,6 +80,7 @@
 }
 
 .startButton {
+  color: white;
   margin-top: 2rem;
   font-size: 2rem;
   display: flex;

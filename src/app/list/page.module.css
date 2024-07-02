@@ -9,8 +9,8 @@
 
 .title {
   font-size: 2.5rem;
-  color: var(--gold);
-  border-bottom: 2px solid var(--gold);
+  color: var(--point-color);
+  border-bottom: 2px solid var(--point-color);
   padding-bottom: 1rem;
   margin-bottom: 2rem;
 }
@@ -56,7 +56,7 @@
 
 .episodeTitle {
   font-size: 1.2rem;
-  color: var(--gold);
+  color: var(--point-color);
   margin-bottom: 0.5rem;
 }
 
