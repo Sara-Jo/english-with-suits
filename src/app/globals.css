@@ -1,5 +1,19 @@
 :root {
   /* colors */
+  --background-color: #ffffff;
+  --background-color-2: #f0f0f0;
+  --background-color-3: #e0e0e0;
+  --background-color-4: #d0d0d0;
+  --text-color: #000000;
+  --primary-color: #e42327;
+  --secondary-color: #ffd700;
+  --success-color: #008000;
+  --gray: #dddddd;
+  --gray-2: #aaaaaa;
+}
+
+[data-theme="dark"] {
+  /* colors */
   --background-color: #0b0808;
   --background-color-2: #1c1c1c;
   --background-color-3: #333333;
@@ -10,11 +24,6 @@
   --green: #008000;
   --gray: #dddddd;
   --gray-2: #aaaaaa;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-  }
 }
 
 * {
