@@ -28,3 +28,7 @@
 .closeButton {
   cursor: pointer;
 }
+
+.closeIcon {
+  color: var(--white);
+}

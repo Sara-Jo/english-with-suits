@@ -18,7 +18,7 @@ export default function Page() {
             }}
             className={styles.closeButton}
           >
-            <CloseRoundedIcon />
+            <CloseRoundedIcon className={styles.closeIcon} />
           </div>
         </div>
         <Login />

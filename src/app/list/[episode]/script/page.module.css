@@ -22,7 +22,7 @@
   justify-content: center;
   cursor: pointer;
   margin-bottom: 2rem;
-  background-color: var(--white);
+  background-color: var(--font-color);
   color: var(--background-color);
   padding: 0.2rem 0.7rem;
   border-radius: 1rem;
