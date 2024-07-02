@@ -1,0 +1,33 @@
+.toggleContainer {
+  width: 3.6rem;
+  height: 2rem;
+  background-color: #0b0808;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggleButton {
+  position: absolute;
+  width: 1.3rem;
+  height: 1.3rem;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.icon {
+  color: #ffd700;
+  font-size: 1.3rem !important;
+}
+
+.dark {
+  transform: translateX(23px);
+}
