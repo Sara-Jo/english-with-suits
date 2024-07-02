@@ -88,6 +88,10 @@ a {
   font-weight: bold;
   padding: 0.7rem 1.5rem;
   margin-top: 2rem;
+
+  &:hover {
+    color: var(--point-color);
+  }
 }
 
 .prevNextButtonSmall {
@@ -110,5 +114,9 @@ a {
   .prevNextButtonSmall {
     display: flex;
     align-items: center;
+
+    &:hover {
+      color: var(--point-color);
+    }
   }
 }

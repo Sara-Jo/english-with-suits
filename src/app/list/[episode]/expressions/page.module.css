@@ -30,6 +30,10 @@
   justify-content: flex-end;
   padding-right: 2rem;
   cursor: pointer;
+
+  &:hover {
+    color: var(--point-color);
+  }
 }
 
 .bookmarkButtontext {
@@ -39,6 +43,10 @@
 .speakButton {
   cursor: pointer;
   margin-bottom: 2rem;
+
+  &:hover {
+    color: var(--point-color);
+  }
 }
 
 .lowerWrapper {
