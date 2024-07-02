@@ -7,6 +7,8 @@ import { useAuthContext } from "../auth/supabaseProvider";
 import Loading from "../_components/Loading";
 import { useState } from "react";
 import ConfirmModal from "../_components/ConfirmModal";
+import ThemeToggle from "../_components/ThemeToggle";
+import { ThemeProvider } from "../ThemeContext";
 
 export default function ListLayout({
   children,
@@ -43,45 +45,48 @@ export default function ListLayout({
 
   return (
     <section>
-      <div className={styles.container}>
-        <div onClick={() => router.back()} className={styles.backButton}>
-          <ArrowBackIosIcon
-            className={styles.backButtonIcon}
-            fontSize="large"
-          />
-        </div>
-        <div className={styles.loginButtonWrapper}>
-          {user ? (
-            <>
+      <ThemeProvider>
+        <div className={styles.container}>
+          <div onClick={() => router.back()} className={styles.backButton}>
+            <ArrowBackIosIcon
+              className={styles.backButtonIcon}
+              fontSize="large"
+            />
+          </div>
+          <ThemeToggle />
+          <div className={styles.loginButtonWrapper}>
+            {user ? (
+              <>
+                <p
+                  onClick={() => router.push("/mypage")}
+                  className={styles.loginButton}
+                >
+                  My Page
+                </p>
+                <p onClick={handleLogoutClick} className={styles.loginButton}>
+                  Logout
+                </p>
+              </>
+            ) : (
               <p
-                onClick={() => router.push("/mypage")}
+                onClick={() => router.push("/login", { scroll: false })}
                 className={styles.loginButton}
               >
-                My Page
+                Sign in
               </p>
-              <p onClick={handleLogoutClick} className={styles.loginButton}>
-                Logout
-              </p>
-            </>
-          ) : (
-            <p
-              onClick={() => router.push("/login", { scroll: false })}
-              className={styles.loginButton}
-            >
-              Sign in
-            </p>
-          )}
+            )}
+          </div>
         </div>
-      </div>
-      {children}
+        {children}
 
-      {showLogoutModal && (
-        <ConfirmModal
-          message="로그아웃 하시겠어요?"
-          onConfirm={handleConfirmLogout}
-          onCancel={handleCancelLogout}
-        />
-      )}
+        {showLogoutModal && (
+          <ConfirmModal
+            message="로그아웃 하시겠어요?"
+            onConfirm={handleConfirmLogout}
+            onCancel={handleCancelLogout}
+          />
+        )}
+      </ThemeProvider>
     </section>
   );
 }
