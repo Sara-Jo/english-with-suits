@@ -1,7 +1,7 @@
 .toggleContainer {
   width: 3.6rem;
   height: 2rem;
-  background-color: #0b0808;
+  background-color: var(--font-color);
   border-radius: 2rem;
   display: flex;
   align-items: center;
@@ -15,7 +15,7 @@
   position: absolute;
   width: 1.3rem;
   height: 1.3rem;
-  background-color: #fff;
+  background-color: var(--background-color);
   border-radius: 50%;
   display: flex;
   align-items: center;
