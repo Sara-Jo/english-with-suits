@@ -14,10 +14,10 @@ interface Word {
   isSelected: boolean;
 }
 
+const punctuations = [".", ",", "?", "!", "~"];
+
 const getInitialSelectedWords = (answer: string[]): string[] => {
-  return answer.map((word) =>
-    [".", ",", "?", "!", "~"].includes(word) ? word : "_"
-  );
+  return answer.map((word) => (punctuations.includes(word) ? word : "_"));
 };
 
 export default function QuizClient({
@@ -29,8 +29,8 @@ export default function QuizClient({
   const [currentExpression, setCurrentExpression] =
     useState<IExpression | null>(expressions[0]);
   const [answer, setAnswer] = useState<string[]>([]);
-  const [words, setWords] = useState<Word[]>([]);
-  const [selectedWords, setSelectedWords] = useState<string[]>([]);
+  const [words, setWords] = useState<Word[]>([]); // 단어 선택지 리스트
+  const [selectedWords, setSelectedWords] = useState<string[]>([]); // 현재까지 완성된 문장
   const [showPopUp, setShowPopUp] = useState<boolean>(false);
   const [isCorrect, setIsCorrect] = useState<boolean>(true);
 
@@ -153,7 +153,7 @@ export default function QuizClient({
           <div className={styles.expressionWrapper}>
             <div className={styles.blankWrapper}>
               {answer.map((word, i) =>
-                [".", ",", "?", "!", "~"].includes(word) ? (
+                punctuations.includes(word) ? (
                   <div className={styles.punctuation} key={i}>
                     {word}
                   </div>
