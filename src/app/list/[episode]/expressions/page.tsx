@@ -30,7 +30,7 @@ export default async function Expressions({
           content="English with Suits, Suits, 미드영어, 비즈니스영어, 슈츠, 슈츠영어"
         />
       </Head>
-      <ExpressionClient expressions={expressions} />;
+      <ExpressionClient expressions={expressions} />
     </>
   );
 }
