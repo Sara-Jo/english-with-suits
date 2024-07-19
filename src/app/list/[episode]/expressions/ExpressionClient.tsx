@@ -68,25 +68,25 @@ export default function ExpressionClient({
   useEffect(() => {
     const loadVoices = () => {
       let availableVoices = speechSynthesis.getVoices();
+
+      const filterAndSetVoices = (voices: SpeechSynthesisVoice[]) => {
+        const enUsVoices = voices.filter((voice) => voice.lang === "en-US");
+        const uniqueVoices = Array.from(
+          new Map(enUsVoices.map((voice) => [voice.name, voice])).values()
+        );
+        setVoices(uniqueVoices);
+        if (uniqueVoices.length > 0) {
+          setInitialVoice(uniqueVoices);
+        }
+      };
+
       if (availableVoices.length === 0) {
         speechSynthesis.addEventListener("voiceschanged", () => {
           availableVoices = speechSynthesis.getVoices();
-          const enUsVoices = availableVoices.filter(
-            (voice) => voice.lang === "en-US"
-          );
-          setVoices(enUsVoices);
-          if (enUsVoices.length > 0) {
-            setInitialVoice(enUsVoices);
-          }
+          filterAndSetVoices(availableVoices);
         });
       } else {
-        const enUsVoices = availableVoices.filter(
-          (voice) => voice.lang === "en-US"
-        );
-        setVoices(enUsVoices);
-        if (enUsVoices.length > 0) {
-          setInitialVoice(enUsVoices);
-        }
+        filterAndSetVoices(availableVoices);
       }
     };
 
