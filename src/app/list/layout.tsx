@@ -43,7 +43,7 @@ export default function ListLayout({
   }
 
   return (
-    <section>
+    <section className={styles.section}>
       <div className={styles.container}>
         <div onClick={() => router.back()} className={styles.backButton}>
           <ArrowBackIosIcon

@@ -8,6 +8,8 @@ import BookmarkBorderRoundedIcon from "@mui/icons-material/BookmarkBorderRounded
 import BookmarkRoundedIcon from "@mui/icons-material/BookmarkRounded";
 import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRounded";
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
+import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
+import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
 import Link from "next/link";
 import supabase from "@/app/auth/supabaseClient";
 import { IExpression, IUser } from "@/lib/interface";
@@ -33,6 +35,7 @@ export default function ExpressionClient({
     useState<SpeechSynthesisVoice | null>(null);
   const [exLink, setExLink] = useState<string>("");
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -128,9 +131,10 @@ export default function ExpressionClient({
     }
   };
 
-  const handleVoiceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const voice = voices.find((v) => v.name === event.target.value);
+  const handleVoiceChange = (voiceName: string) => {
+    const voice = voices.find((v) => v.name === voiceName);
     setSelectedVoice(voice || null);
+    setIsDropdownOpen(false);
   };
 
   const handleBookmarkClick = async () => {
@@ -181,6 +185,7 @@ export default function ExpressionClient({
             <ArrowCircleRightRoundedIcon sx={{ fontSize: 30 }} />
           </div>
         </div>
+
         <div
           onClick={handleBookmarkClick}
           className={styles.bookmarkButtonWrapper}
@@ -200,23 +205,34 @@ export default function ExpressionClient({
         </div>
       </div>
 
-      <div className={styles.voiceSelectorWrapper}>
-        <p>Choose Voice</p>
-        <select
-          id="voiceSelector"
-          value={selectedVoice?.name || ""}
-          onChange={handleVoiceChange}
-        >
-          {voices.map((voice) => (
-            <option key={voice.name} value={voice.name}>
-              {voice.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div onClick={speakExpression} className={styles.speakButton}>
-        <VolumeUpRoundedIcon fontSize="large" />
+      <div className={styles.speakButton}>
+        <div onClick={speakExpression}>
+          <VolumeUpRoundedIcon fontSize="large" />
+        </div>
+        <div onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+          <ArrowDropDownRoundedIcon fontSize="large" />
+        </div>
+        {isDropdownOpen && (
+          <div className={styles.voiceOptions}>
+            {voices.map((voice) => (
+              <div
+                key={voice.name}
+                className={`${styles.voiceOption} ${
+                  voice.name === selectedVoice?.name ? styles.selectedVoice : ""
+                }`}
+                onClick={() => handleVoiceChange(voice.name)}
+              >
+                {voice.name}
+                {voice.name === selectedVoice?.name && (
+                  <DoneRoundedIcon
+                    className={styles.checkIcon}
+                    fontSize="small"
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className={styles.lowerWrapper}>

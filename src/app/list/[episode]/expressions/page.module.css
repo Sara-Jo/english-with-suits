@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  height: 100%;
 }
 
 .upperWrapper {
@@ -43,26 +43,63 @@
 .speakButton {
   cursor: pointer;
   margin-bottom: 2rem;
+  display: flex;
+  position: relative;
+}
 
-  &:hover {
-    color: var(--point-color);
+.voiceOptions {
+  position: absolute;
+  background-color: var(--background-color-4);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 10rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  top: 2rem;
+  left: 2rem;
+
+  &::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    border: 0.2rem solid var(--background-color-4);
+    border-radius: 1rem;
+    background-color: var(--text-color);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--background-color-4);
   }
 }
 
-.voiceSelectorWrapper {
+.voiceOption {
+  padding: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
-  font-size: 0.8rem;
+  justify-content: space-between;
 }
 
-.voiceSelectorLabel {
-  margin-right: 0.5rem;
+.voiceOption:hover {
+  background-color: var(--background-color-3);
 }
 
-.voiceSelector {
-  padding: 0.2rem;
-  font-size: 0.8rem;
+.selectedVoice {
+  font-weight: bold;
+  color: var(--point-color);
+}
+
+.checkIcon {
+  font-size: 1rem !important;
+  margin-left: 1rem;
 }
 
 .lowerWrapper {
