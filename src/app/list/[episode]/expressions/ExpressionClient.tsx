@@ -15,6 +15,8 @@ import { fetchUserData } from "@/lib/fetchUserData";
 import { useAuthContext } from "@/app/auth/supabaseProvider";
 import { useRouter } from "next/navigation";
 
+const preferredVoices = ["Aaron", "Google US English", "Samantha", "Reed"];
+
 export default function ExpressionClient({
   expressions,
 }: {
@@ -71,7 +73,7 @@ export default function ExpressionClient({
           );
           setVoices(enUsVoices);
           if (enUsVoices.length > 0) {
-            setSelectedVoice(enUsVoices[0]);
+            setInitialVoice(enUsVoices);
           }
         });
       } else {
@@ -80,9 +82,20 @@ export default function ExpressionClient({
         );
         setVoices(enUsVoices);
         if (enUsVoices.length > 0) {
-          setSelectedVoice(enUsVoices[0]);
+          setInitialVoice(enUsVoices);
         }
       }
+    };
+
+    const setInitialVoice = (enUsVoices: SpeechSynthesisVoice[]) => {
+      for (const voiceName of preferredVoices) {
+        const voice = enUsVoices.find((v) => v.name.includes(voiceName));
+        if (voice) {
+          setSelectedVoice(voice);
+          return;
+        }
+      }
+      setSelectedVoice(enUsVoices[0]);
     };
 
     loadVoices();
