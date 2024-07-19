@@ -27,6 +27,8 @@ export default function ExpressionClient({
   const [currentExpression, setCurrentExpression] =
     useState<IExpression | null>(expressions[0]);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const [selectedVoice, setSelectedVoice] =
+    useState<SpeechSynthesisVoice | null>(null);
   const [exLink, setExLink] = useState<string>("");
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
 
@@ -64,10 +66,22 @@ export default function ExpressionClient({
       if (availableVoices.length === 0) {
         speechSynthesis.addEventListener("voiceschanged", () => {
           availableVoices = speechSynthesis.getVoices();
-          setVoices(availableVoices);
+          const enUsVoices = availableVoices.filter(
+            (voice) => voice.lang === "en-US"
+          );
+          setVoices(enUsVoices);
+          if (enUsVoices.length > 0) {
+            setSelectedVoice(enUsVoices[0]);
+          }
         });
       } else {
-        setVoices(availableVoices);
+        const enUsVoices = availableVoices.filter(
+          (voice) => voice.lang === "en-US"
+        );
+        setVoices(enUsVoices);
+        if (enUsVoices.length > 0) {
+          setSelectedVoice(enUsVoices[0]);
+        }
       }
     };
 
@@ -91,16 +105,19 @@ export default function ExpressionClient({
   };
 
   const speakExpression = () => {
-    if (voices.length > 0) {
+    if (selectedVoice) {
       const utterance = new SpeechSynthesisUtterance();
-      const preferredVoice =
-        voices.find((voice) => voice.lang === "en-US") || voices[0];
-      utterance.voice = preferredVoice;
+      utterance.voice = selectedVoice;
       utterance.text = currentExpression?.en || "";
       speechSynthesis.speak(utterance);
     } else {
       console.log("No voices available.");
     }
+  };
+
+  const handleVoiceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const voice = voices.find((v) => v.name === event.target.value);
+    setSelectedVoice(voice || null);
   };
 
   const handleBookmarkClick = async () => {
@@ -168,6 +185,21 @@ export default function ExpressionClient({
           )}
           <p className={styles.bookmarkButtontext}>Bookmark</p>
         </div>
+      </div>
+
+      <div className={styles.voiceSelectorWrapper}>
+        <p>Choose Voice</p>
+        <select
+          id="voiceSelector"
+          value={selectedVoice?.name || ""}
+          onChange={handleVoiceChange}
+        >
+          {voices.map((voice) => (
+            <option key={voice.name} value={voice.name}>
+              {voice.name}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div onClick={speakExpression} className={styles.speakButton}>
