@@ -1,6 +1,7 @@
 "use client";
 
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import styles from "./layout.module.css";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "../auth/supabaseProvider";
@@ -45,11 +46,16 @@ export default function ListLayout({
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <div onClick={() => router.back()} className={styles.backButton}>
-          <ArrowBackIosIcon
-            className={styles.backButtonIcon}
-            fontSize="large"
-          />
+        <div className={styles.routeButtonWrapper}>
+          <div onClick={() => router.back()} className={styles.backButton}>
+            <ArrowBackIosIcon
+              className={styles.backButtonIcon}
+              fontSize="large"
+            />
+          </div>
+          <div onClick={() => router.push("/")} className={styles.homeButton}>
+            <HomeOutlinedIcon fontSize="large" />
+          </div>
         </div>
         <div className={styles.loginButtonWrapper}>
           <ThemeToggle />
