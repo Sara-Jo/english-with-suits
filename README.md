@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# English with Suits
 
-## Getting Started
+**https://english-with-suits.vercel.app**
 
-First, run the development server:
+## 💁‍♀️ 서비스 소개
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**English with Suits**는 인기 미국 드라마 ‘Suits’에 등장하는 유익한 비즈니스 영어 회화 표현들을 학습할 수 있는 서비스입니다. ‘Suits’로 영어를 공부하는 유저들이 반복 학습을 통해 회화 표현들을 효과적으로 익힐 수 있도록 돕기 위해 개발되었습니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌱 주요 개발 사항
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 회원가입 및 로그인 (SSO 지원)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- 간편한 회원가입 및 소셜 로그인 기능을 통해 유저들이 빠르게 서비스에 접근할 수 있습니다.
 
-## Learn More
+### 스크립트 뷰어 및 스크립트 파일 다운로드
 
-To learn more about Next.js, take a look at the following resources:
+- 유저들이 ‘Suits’의 스크립트를 쉽게 볼 수 있는 뷰어 기능을 제공합니다.
+- 스크립트 파일을 다운로드할 수 있습니다.
+- 뷰어 내에서 텍스트 선택(복사 및 붙여넣기)이 가능하며, 양쪽으로 드래그 또는 슬라이드 터치로 페이지 전환이 가능합니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 에피소드별 주요 표현 학습하기
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **발음 청취**: Web Speech API를 활용하여 정확한 발음을 들을 수 있으며, 개인의 취향에 따라 발음 목소리를 선택할 수 있습니다.
+- **표현 저장하기**: 북마크 기능을 통해 마음에 드는 표현을 저장하고 마이페이지에서 반복 학습할 수 있습니다.
+- **다른 예문 학습**: YouGlish URL 연결을 통해 해당 표현이 사용된 다양한 예문을 학습할 수 있습니다.
 
-## Deploy on Vercel
+### 주요 표현 퀴즈 풀기
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 문장 배열 완성 퀴즈를 통해 학습한 표현들을 복습할 수 있는 기능을 제공합니다.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### 다크모드, 라이트 모드 전환
+
+- 사용자 환경에 맞추어 다크모드와 라이트모드를 자유롭게 전환할 수 있습니다.
+
+### SEO 최적화
+
+- 검색 엔진 최적화를 통해 더 많은 유저들이 서비스를 발견하고 이용할 수 있도록 했습니다.
+
+## 🛠️ 기술 스택
+
+- **Next.js**
+  - React 기반의 프레임워크로서, 서버 사이드 렌더링과 정적 사이트 생성을 통해 빠르고 효율적인 웹사이트를 구축했습니다.
+- **Typescript**
+  - 정적 타입을 사용하여 코드의 안정성과 가독성을 높였습니다.
+- **Supabase**
+  - BaaS(Backend as a Service)를 통해 빠르고 쉽게 데이터베이스와 인증 기능을 구축했습니다.
+- **React-pdf**
+  - PDF 문서의 렌더링 및 다운로드 기능을 구현하기 위해 사용했습니다.
