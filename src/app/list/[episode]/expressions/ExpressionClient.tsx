@@ -206,6 +206,7 @@ export default function ExpressionClient({
       </div>
 
       <div className={styles.speakButton}>
+        <div></div>
         <div onClick={speakExpression}>
           <VolumeUpRoundedIcon fontSize="large" />
         </div>
