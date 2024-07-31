@@ -16,15 +16,13 @@ export default async function Expressions({
   params: { episode: number };
 }) {
   const expressions = await fetchExpressions(params.episode);
+  const firstExpression = expressions[0];
 
   return (
     <>
       <Head>
-        <title>English with Suits: Season 1 Episode {params.episode}</title>
-        <meta
-          name="description"
-          content="Learn business English with English with Suits"
-        />
+        <title>English with Suits: {firstExpression.en}</title>
+        <meta name="description" content={firstExpression.ko} />
         <meta
           name="keywords"
           content="English with Suits, Suits, 미드영어, 비즈니스영어, 슈츠, 슈츠영어"
