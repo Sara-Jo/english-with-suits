@@ -1,0 +1,15 @@
+.textContainer {
+  display: inline-block;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.letter {
+  display: inline-block;
+}
+
+.responsiveText {
+  text-align: left;
+  transition: font-size 0.3s ease-in-out;
+}
