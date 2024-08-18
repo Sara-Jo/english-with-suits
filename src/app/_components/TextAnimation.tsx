@@ -7,12 +7,14 @@ export default function TextAnimation({
   startDelay = 0,
   fontSize = "3rem",
   color = "white",
+  onAnimationComplete = () => {},
 }: {
   text: string;
   delayFactor?: number;
   startDelay?: number;
   fontSize?: string;
   color?: string;
+  onAnimationComplete?: () => void;
 }) {
   const letters = text.split("");
 
@@ -25,6 +27,11 @@ export default function TextAnimation({
         delay: startDelay + i * delayFactor,
         type: "spring",
         stiffness: 100,
+        onComplete: () => {
+          if (i === letters.length - 1) {
+            onAnimationComplete();
+          }
+        },
       },
     }),
   };
