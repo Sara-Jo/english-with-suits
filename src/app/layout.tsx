@@ -52,7 +52,7 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             <Suspense fallback={<Loading />}>
-              <div>{auth}</div>
+              {auth}
               {children}
             </Suspense>
           </AuthProvider>
