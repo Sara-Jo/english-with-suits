@@ -67,12 +67,9 @@ export default function Home() {
       <div className={styles.upperWrapper}>
         {user ? (
           <>
-            <p
-              onClick={() => router.push("/mypage")}
-              className={styles.loginButton}
-            >
+            <Link href="/mypage" className={styles.loginButton}>
               My Page
-            </p>
+            </Link>
             <p onClick={handleLogoutClick} className={styles.loginButton}>
               Logout
             </p>
