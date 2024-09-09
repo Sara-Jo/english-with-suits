@@ -9,7 +9,7 @@ import { useState } from "react";
 import ConfirmModal from "../_components/ConfirmModal";
 import ThemeToggle from "../_components/ThemeToggle";
 
-export default function ListLayout({
+export default function MyPageLayout({
   children,
 }: {
   children: React.ReactNode;

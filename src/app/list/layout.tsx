@@ -9,6 +9,7 @@ import Loading from "../_components/Loading";
 import { useState } from "react";
 import ConfirmModal from "../_components/ConfirmModal";
 import ThemeToggle from "../_components/ThemeToggle";
+import Link from "next/link";
 
 export default function ListLayout({
   children,
@@ -53,31 +54,25 @@ export default function ListLayout({
               fontSize="large"
             />
           </div>
-          <div onClick={() => router.push("/")} className={styles.homeButton}>
+          <Link href="/" className={styles.homeButton}>
             <HomeOutlinedIcon fontSize="large" />
-          </div>
+          </Link>
         </div>
         <div className={styles.loginButtonWrapper}>
           <ThemeToggle />
           {user ? (
             <>
-              <p
-                onClick={() => router.push("/mypage")}
-                className={styles.loginButton}
-              >
+              <Link href="/mypage" scroll className={styles.loginButton}>
                 My Page
-              </p>
+              </Link>
               <p onClick={handleLogoutClick} className={styles.loginButton}>
                 Logout
               </p>
             </>
           ) : (
-            <p
-              onClick={() => router.push("/login", { scroll: false })}
-              className={styles.loginButton}
-            >
+            <Link href="/login" scroll={false} className={styles.loginButton}>
               Sign in
-            </p>
+            </Link>
           )}
         </div>
       </div>
