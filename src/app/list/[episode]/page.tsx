@@ -4,6 +4,7 @@ import Image from "next/image";
 import { fetchEpisode } from "@/lib/fetchEpisode";
 import styles from "./page.module.css";
 import Description from "@/app/_components/Description";
+import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 
 export default async function Episode({
   params,
@@ -48,14 +49,26 @@ export default async function Episode({
             <Description description={episode.description} />
           </div>
           <div className={styles.right}>
-            <Link href={`${episode.episode}/script`}>
-              <p className={styles.element}>📄 전체 스크립트 보기</p>
+            <Link
+              href={`${episode.episode}/script`}
+              className={styles.menuButton}
+            >
+              <p className={styles.menuButtonText}>📄 전체 스크립트 보기</p>
+              <KeyboardArrowRightRoundedIcon />
             </Link>
-            <Link href={`${episode.episode}/expressions`}>
-              <p className={styles.element}>✍️ 주요 표현 공부하기</p>
+            <Link
+              href={`${episode.episode}/expressions`}
+              className={styles.menuButton}
+            >
+              <p className={styles.menuButtonText}>✍️ 주요 표현 공부하기</p>
+              <KeyboardArrowRightRoundedIcon />
             </Link>
-            <Link href={`${episode.episode}/quiz`}>
-              <p className={styles.element}>💯 Quiz</p>
+            <Link
+              href={`${episode.episode}/quiz`}
+              className={styles.menuButton}
+            >
+              <p className={styles.menuButtonText}>💯 Quiz</p>
+              <KeyboardArrowRightRoundedIcon />
             </Link>
           </div>
         </div>
