@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { fetchEpisode } from "@/lib/fetchEpisode";
 import styles from "./page.module.css";
+import Description from "@/app/_components/Description";
 
 export default async function Episode({
   params,
@@ -13,6 +14,7 @@ export default async function Episode({
   if (!episode) {
     return <p>Episode not found.</p>;
   }
+
   return (
     <>
       <Head>
@@ -43,7 +45,7 @@ export default async function Episode({
                 className={styles.image}
               />
             </div>
-            <p className={styles.episodeDescription}>{episode.description}</p>
+            <Description description={episode.description} />
           </div>
           <div className={styles.right}>
             <Link href={`${episode.episode}/script`}>

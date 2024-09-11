@@ -42,13 +42,6 @@
   border-radius: 10px;
 }
 
-.episodeDescription {
-  font-size: 1.2rem;
-  text-align: left;
-  line-height: 1.5;
-  max-width: 400px;
-}
-
 .right {
   width: 50%;
   padding: 2rem;

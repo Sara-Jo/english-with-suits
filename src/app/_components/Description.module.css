@@ -1,0 +1,28 @@
+.container {
+  text-align: left;
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+.truncated {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  position: relative;
+  white-space: pre-wrap;
+}
+
+.full {
+  white-space: normal;
+}
+
+.moreButton {
+  color: var(--point-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+  white-space: nowrap;
+  display: inline;
+}
