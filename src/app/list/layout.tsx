@@ -37,11 +37,7 @@ export default function ListLayout({
   };
 
   if (loading || logoutLoading) {
-    return (
-      <div className="loadingMain">
-        <Loading />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

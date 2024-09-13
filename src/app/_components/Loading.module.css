@@ -1,3 +1,11 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .spinner {
   border: 8px solid rgba(0, 0, 0, 0.1);
   border-top: 8px solid;

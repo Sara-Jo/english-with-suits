@@ -55,11 +55,7 @@ export default function Home() {
   }, [isAnimationComplete, buttonControls]);
 
   if (loading || logoutLoading) {
-    return (
-      <div className="loadingMain">
-        <Loading />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

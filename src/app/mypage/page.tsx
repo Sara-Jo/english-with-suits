@@ -79,11 +79,7 @@ function MyPage() {
   };
 
   if (isLoading) {
-    return (
-      <div className="loadingMain">
-        <Loading />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

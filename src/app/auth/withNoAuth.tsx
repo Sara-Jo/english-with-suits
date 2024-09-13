@@ -18,11 +18,7 @@ const withNoAuth = (WrappedComponent: React.ComponentType) => {
     }, [loading, user]);
 
     if (loading) {
-      return (
-        <div className="loadingMain">
-          <Loading />
-        </div>
-      );
+      return <Loading />;
     }
 
     if (user) {
