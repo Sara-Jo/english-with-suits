@@ -6,8 +6,8 @@
 
 .truncated {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   position: relative;
@@ -21,8 +21,9 @@
 .moreButton {
   color: var(--point-color);
   font-size: 0.9rem;
+  font-weight: bold;
   cursor: pointer;
   text-decoration: underline;
   white-space: nowrap;
-  display: inline;
+  margin-top: 0.5rem;
 }

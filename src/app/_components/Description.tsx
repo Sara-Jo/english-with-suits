@@ -11,14 +11,13 @@ export default function Description({ description }: { description: string }) {
       <p className={showFullDescription ? styles.full : styles.truncated}>
         {description}
       </p>
-      {!showFullDescription && (
-        <span
-          className={styles.moreButton}
-          onClick={() => setShowFullDescription(true)}
-        >
-          Show more
-        </span>
-      )}
+
+      <div
+        className={styles.moreButton}
+        onClick={() => setShowFullDescription(!showFullDescription)}
+      >
+        {showFullDescription ? <p>Show less</p> : <p>Show more</p>}
+      </div>
     </div>
   );
 }
