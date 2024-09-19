@@ -1,7 +1,12 @@
 "use client";
 
-import styles from "./page.module.css";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { IExpression, IUser } from "@/lib/interface";
+import { fetchUserData } from "@/lib/fetchUserData";
+import { useAuthContext } from "@/app/auth/supabaseProvider";
+import { addBookmark, removeBookmark } from "@/lib/handleBookmark";
 import VolumeUpRoundedIcon from "@mui/icons-material/VolumeUpRounded";
 import LaunchRoundedIcon from "@mui/icons-material/LaunchRounded";
 import BookmarkBorderRoundedIcon from "@mui/icons-material/BookmarkBorderRounded";
@@ -10,12 +15,7 @@ import ArrowCircleLeftRoundedIcon from "@mui/icons-material/ArrowCircleLeftRound
 import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
-import Link from "next/link";
-import { IExpression, IUser } from "@/lib/interface";
-import { fetchUserData } from "@/lib/fetchUserData";
-import { useAuthContext } from "@/app/auth/supabaseProvider";
-import { useRouter } from "next/navigation";
-import { handleBookmark } from "@/lib/handleBookmark";
+import styles from "./page.module.css";
 
 const preferredVoices = ["Aaron", "Google US English", "Samantha", "Reed"];
 
@@ -143,17 +143,18 @@ export default function ExpressionClient({
       return;
     }
 
-    if (currentExpression) {
-      const updatedUser = await handleBookmark(
-        userData,
-        currentExpression.id,
-        isBookmarked
-      );
+    if (!currentExpression) return;
 
-      if (updatedUser) {
-        setUserData(updatedUser);
-        setIsBookmarked(!isBookmarked);
-      }
+    let updatedUser;
+    if (isBookmarked) {
+      updatedUser = await removeBookmark(userData, currentExpression.id);
+    } else {
+      updatedUser = await addBookmark(userData, currentExpression.id);
+    }
+
+    if (updatedUser) {
+      setUserData(updatedUser);
+      setIsBookmarked(!isBookmarked);
     }
   };
 

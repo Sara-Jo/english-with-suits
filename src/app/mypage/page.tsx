@@ -1,14 +1,15 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useAuthContext } from "../auth/supabaseProvider";
 import withAuth from "../auth/withAuth";
-import styles from "./page.module.css";
-import { useEffect, useState } from "react";
 import { fetchUserData } from "@/lib/fetchUserData";
 import { IExpression, IUser } from "@/lib/interface";
-import Loading from "../_components/Loading";
 import supabase from "../auth/supabaseClient";
+import Loading from "../_components/Loading";
+import { removeBookmark } from "@/lib/handleBookmark";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
+import styles from "./page.module.css";
 
 function MyPage() {
   const { user } = useAuthContext();
@@ -46,33 +47,17 @@ function MyPage() {
     fetchUserAndBookmarks();
   }, [user]);
 
-  const removeBookmark = async (id: number) => {
+  const handleRemoveBookmark = async (id: number) => {
     if (isRemoving) return;
 
     setIsRemoving(true);
 
-    if (userData) {
-      const updatedBookmarks = userData.bookmarks.filter(
-        (bookmarkId: number) => bookmarkId !== id
-      );
-
-      const { error: updateError } = await supabase
-        .from("users")
-        .update({ bookmarks: updatedBookmarks })
-        .eq("id", userData.id);
-
-      if (updateError) {
-        console.error("Error updating bookmarks:", updateError.message);
-        setIsRemoving(false);
-        return;
-      }
-
+    const updatedUserData = await removeBookmark(userData, id);
+    if (updatedUserData) {
       setBookmarkedExpressions((prev) =>
         prev.filter((expression) => expression.id !== id)
       );
-      setUserData((prevUserData) =>
-        prevUserData ? { ...prevUserData, bookmarks: updatedBookmarks } : null
-      );
+      setUserData(updatedUserData);
     }
 
     setIsRemoving(false);
@@ -106,7 +91,7 @@ function MyPage() {
                   </div>
                   <div className={styles.removeButtonWrapper}>
                     <div
-                      onClick={() => removeBookmark(expression.id)}
+                      onClick={() => handleRemoveBookmark(expression.id)}
                       className={styles.removeButton}
                     >
                       <HighlightOffRoundedIcon />

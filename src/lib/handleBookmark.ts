@@ -1,33 +1,48 @@
 import supabase from "@/app/auth/supabaseClient";
 import { IUser } from "./interface";
 
-export const handleBookmark = async (
+export const addBookmark = async (
   userData: IUser | null,
-  expressionId: number,
-  isBookmarked: boolean
-) => {
+  expressionId: number
+): Promise<IUser | null> => {
   if (!userData) return null;
 
-  const updatedUser = { ...userData };
-  if (!updatedUser.bookmarks) {
-    updatedUser.bookmarks = [];
-  }
+  const updatedBookmarks = userData.bookmarks
+    ? [...userData.bookmarks, expressionId]
+    : [expressionId];
 
-  if (isBookmarked) {
-    // 북마크 해제
-    updatedUser.bookmarks = updatedUser.bookmarks.filter(
-      (id) => id !== expressionId
-    );
-  } else {
-    // 북마크 추가
-    updatedUser.bookmarks.push(expressionId);
-  }
+  const { error } = await supabase
+    .from("users")
+    .update({ bookmarks: updatedBookmarks })
+    .eq("id", userData.id);
 
-  const { error } = await supabase.from("users").upsert(updatedUser);
   if (error) {
-    console.error("Error upserting bookmark:", error);
+    console.error("Error updating bookmark:", error);
     return null;
   }
 
-  return updatedUser;
+  return { ...userData, bookmarks: updatedBookmarks };
+};
+
+export const removeBookmark = async (
+  userData: IUser | null,
+  expressionId: number
+): Promise<IUser | null> => {
+  if (!userData) return null;
+
+  const updatedBookmarks = userData.bookmarks.filter(
+    (bookmarkId: number) => bookmarkId !== expressionId
+  );
+
+  const { error } = await supabase
+    .from("users")
+    .update({ bookmarks: updatedBookmarks })
+    .eq("id", userData.id);
+
+  if (error) {
+    console.error("Error updating bookmark:", error);
+    return null;
+  }
+
+  return { ...userData, bookmarks: updatedBookmarks };
 };
