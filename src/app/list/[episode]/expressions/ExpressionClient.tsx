@@ -11,11 +11,11 @@ import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRou
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
 import Link from "next/link";
-import supabase from "@/app/auth/supabaseClient";
 import { IExpression, IUser } from "@/lib/interface";
 import { fetchUserData } from "@/lib/fetchUserData";
 import { useAuthContext } from "@/app/auth/supabaseProvider";
 import { useRouter } from "next/navigation";
+import { handleBookmark } from "@/lib/handleBookmark";
 
 const preferredVoices = ["Aaron", "Google US English", "Samantha", "Reed"];
 
@@ -140,25 +140,20 @@ export default function ExpressionClient({
   const handleBookmarkClick = async () => {
     if (!userData) {
       router.push("/login", { scroll: false });
+      return;
     }
 
-    if (userData && currentExpression) {
-      const updatedUser = { ...userData };
-      if (!updatedUser.bookmarks) {
-        updatedUser.bookmarks = [];
-      }
+    if (currentExpression) {
+      const updatedUser = await handleBookmark(
+        userData,
+        currentExpression.id,
+        isBookmarked
+      );
 
-      if (isBookmarked) {
-        updatedUser.bookmarks = updatedUser.bookmarks.filter(
-          (id) => id !== currentExpression.id
-        );
-      } else {
-        updatedUser.bookmarks.push(currentExpression.id);
+      if (updatedUser) {
+        setUserData(updatedUser);
+        setIsBookmarked(!isBookmarked);
       }
-
-      await supabase.from("users").upsert(updatedUser);
-      setUserData(updatedUser);
-      setIsBookmarked(!isBookmarked);
     }
   };
 
