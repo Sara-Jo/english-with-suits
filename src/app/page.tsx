@@ -22,22 +22,39 @@ export default function Home() {
 
   const buttonControls = useAnimation();
 
-  let [ref, { height }] = useMeasure();
-  const yTranslation = useMotionValue(0);
+  let [ref1, { height: height1 }] = useMeasure();
+  let [ref2, { height: height2 }] = useMeasure();
+  const yTranslation1 = useMotionValue(0);
+  const yTranslation2 = useMotionValue(0);
 
-  const images = [
-    "/image/home/1.jpg",
-    "/image/home/2.jpg",
-    "/image/home/3.jpg",
-    "/image/home/4.jpg",
-    "/image/home/5.jpg",
-    "/image/home/6.jpg",
-    "/image/home/7.jpg",
-    "/image/home/8.jpg",
-    "/image/home/9.jpg",
-    "/image/home/10.jpg",
-    "/image/home/11.jpg",
-    "/image/home/12.jpg",
+  const images1 = [
+    "/image/home/S1/1.jpg",
+    "/image/home/S1/2.jpg",
+    "/image/home/S1/3.jpg",
+    "/image/home/S1/4.jpg",
+    "/image/home/S1/5.jpg",
+    "/image/home/S1/6.jpg",
+    "/image/home/S1/7.jpg",
+    "/image/home/S1/8.jpg",
+    "/image/home/S1/9.jpg",
+    "/image/home/S1/10.jpg",
+    "/image/home/S1/11.jpg",
+    "/image/home/S1/12.jpg",
+  ];
+
+  const images2 = [
+    "/image/home/S2/1.jpg",
+    "/image/home/S2/2.jpg",
+    "/image/home/S2/3.jpg",
+    "/image/home/S2/4.jpg",
+    "/image/home/S2/5.jpg",
+    "/image/home/S2/6.jpg",
+    "/image/home/S2/7.jpg",
+    "/image/home/S2/8.jpg",
+    "/image/home/S2/9.jpg",
+    "/image/home/S2/10.jpg",
+    "/image/home/S2/11.jpg",
+    "/image/home/S2/12.jpg",
   ];
 
   const handleLogoutClick = () => {
@@ -63,9 +80,9 @@ export default function Home() {
 
   useEffect(() => {
     let controls;
-    let finalPosition = -height / 2 - 8;
+    let finalPosition1 = -height1 / 2 - 8;
 
-    controls = animate(yTranslation, [0, finalPosition], {
+    controls = animate(yTranslation1, [0, finalPosition1], {
       ease: "linear",
       duration: 24,
       repeat: Infinity,
@@ -74,7 +91,22 @@ export default function Home() {
     });
 
     return controls.stop;
-  }, [yTranslation, height]);
+  }, [yTranslation1, height1]);
+
+  useEffect(() => {
+    let controls;
+    let finalPosition2 = -height2 / 2 - 8;
+
+    controls = animate(yTranslation2, [0, finalPosition2], {
+      ease: "linear",
+      duration: 24,
+      repeat: Infinity,
+      repeatType: "loop",
+      repeatDelay: 0,
+    });
+
+    return controls.stop;
+  }, [yTranslation2, height2]);
 
   useEffect(() => {
     if (isAnimationComplete) {
@@ -137,20 +169,20 @@ export default function Home() {
       <div className={styles.rightSide}>
         <motion.div
           className={`${styles.imageContainer} ${styles.imageContainerFirst}`}
-          ref={ref}
-          style={{ y: yTranslation }}
+          ref={ref1}
+          style={{ y: yTranslation1 }}
         >
-          {[...images, ...images].map((item, idx) => (
+          {[...images1, ...images1].map((item, idx) => (
             <ImageCard image={item} key={idx} />
           ))}
         </motion.div>
 
         <motion.div
           className={`${styles.imageContainer} ${styles.imageContainerSecond}`}
-          ref={ref}
-          style={{ y: yTranslation }}
+          ref={ref2}
+          style={{ y: yTranslation2 }}
         >
-          {[...images, ...images].map((item, idx) => (
+          {[...images2, ...images2].map((item, idx) => (
             <ImageCard image={item} key={idx} />
           ))}
         </motion.div>

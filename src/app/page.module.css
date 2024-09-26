@@ -45,11 +45,12 @@
 }
 
 .imageContainerFirst {
-  right: 15rem;
+  right: 20rem;
+  top: 0;
 }
 
 .imageContainerSecond {
-  right: -7rem;
+  right: -2rem;
   top: 7rem;
 }
 
