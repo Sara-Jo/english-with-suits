@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./auth/supabaseProvider";
 import { Suspense } from "react";
 import Loading from "./_components/Loading";
 import { ThemeProvider } from "./ThemeContext";
 
-const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "English With Suits",
@@ -48,7 +48,7 @@ export default function RootLayout({
           content="H9ozdhnGtWaEwS87AMdhNNow2KjahdkrMFDEgDdeoh8"
         />
       </head>
-      <body className={inter.className}>
+      <body className={montserrat.className}>
         <ThemeProvider>
           <AuthProvider>
             <Suspense fallback={<Loading />}>

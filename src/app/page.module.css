@@ -1,83 +1,69 @@
 .main {
-  width: 100vw;
+  display: flex;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-repeat: no-repeat;
-  background-image: url("/image/suits-poster-small.jpg");
-  background-position: right;
-  background-size: 70rem;
   background-color: black;
-  padding: 1rem;
-}
-
-.main::before,
-.main::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.main::before {
-  background: linear-gradient(
-    to bottom,
-    rgba(245, 246, 252, 0.05) 0%,
-    rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-}
-
-.main::after {
-  background: linear-gradient(
-    to left,
-    rgba(245, 246, 252, 0.05) 0%,
-    rgba(0, 0, 0, 0.3) 50%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-}
-
-.upperWrapper {
-  display: flex;
-  justify-content: flex-end;
-  padding: 1.5rem;
-}
-
-.loginButton {
-  font-weight: 500;
-  padding: 0.2rem 0.5rem;
-  cursor: pointer;
-}
-
-.body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 8rem;
-}
-
-.startButton {
-  z-index: 1;
-  font-weight: bold;
-}
-
-.startButton {
   color: white;
+}
+
+.leftSide {
+  width: 40%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.menuWrapper {
+  padding-left: 2rem;
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.titleWrapper {
+  height: 100%;
+  padding: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.rightSide {
+  width: 60%;
+  position: relative;
+  overflow: hidden;
+}
+
+.imageContainer {
+  position: absolute;
+  right: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.card {
+  width: 20rem;
+  height: auto;
+  margin-bottom: 7rem;
+  border-radius: 1rem;
+}
+
+.startButton {
   margin-top: 2rem;
   font-size: 2rem;
   display: flex;
   align-items: center;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .startButton:hover {
   transform: scale(1.2);
   transition: transform 0.3s ease;
-  cursor: pointer;
 }
 
 /* Media queries*/
