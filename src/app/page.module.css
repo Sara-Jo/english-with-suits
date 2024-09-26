@@ -51,7 +51,6 @@
 .imageContainerSecond {
   right: -7rem;
   top: 7rem;
-  opacity: 0.5; /* Optional: Change opacity for the second container */
 }
 
 .card {
