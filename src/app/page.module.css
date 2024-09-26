@@ -33,15 +33,25 @@
   width: 60%;
   position: relative;
   overflow: hidden;
+  display: flex;
 }
 
 .imageContainer {
   position: absolute;
-  right: 4rem;
+  gap: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 2rem;
+}
+
+.imageContainerFirst {
+  right: 15rem;
+}
+
+.imageContainerSecond {
+  right: -7rem;
+  top: 7rem;
+  opacity: 0.5; /* Optional: Change opacity for the second container */
 }
 
 .card {

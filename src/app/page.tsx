@@ -136,7 +136,17 @@ export default function Home() {
 
       <div className={styles.rightSide}>
         <motion.div
-          className={styles.imageContainer}
+          className={`${styles.imageContainer} ${styles.imageContainerFirst}`}
+          ref={ref}
+          style={{ y: yTranslation }}
+        >
+          {[...images, ...images].map((item, idx) => (
+            <ImageCard image={item} key={idx} />
+          ))}
+        </motion.div>
+
+        <motion.div
+          className={`${styles.imageContainer} ${styles.imageContainerSecond}`}
           ref={ref}
           style={{ y: yTranslation }}
         >
