@@ -145,15 +145,18 @@ export default function Home() {
           )}
         </div>
         <div className={styles.titleWrapper}>
-          <TextAnimation text="English with" />
-          <TextAnimation
-            text="Suits"
-            delayFactor={0.15}
-            startDelay={1.2}
-            fontSize="5rem"
-            color="var(--red)"
-            onAnimationComplete={() => setIsAnimationComplete(true)}
-          />
+          <div className={styles.englishWith}>
+            <TextAnimation text="English with" />
+          </div>
+          <div className={styles.suits}>
+            <TextAnimation
+              text="Suits"
+              delayFactor={0.15}
+              startDelay={1.2}
+              color="var(--red)"
+              onAnimationComplete={() => setIsAnimationComplete(true)}
+            />
+          </div>
           <motion.div
             onClick={() => router.push("/list")}
             className={styles.startButton}

@@ -5,14 +5,12 @@ export default function TextAnimation({
   text,
   delayFactor = 0.1,
   startDelay = 0,
-  fontSize = "3rem",
   color = "white",
   onAnimationComplete = () => {},
 }: {
   text: string;
   delayFactor?: number;
   startDelay?: number;
-  fontSize?: string;
   color?: string;
   onAnimationComplete?: () => void;
 }) {
@@ -49,7 +47,6 @@ export default function TextAnimation({
           initial="initial"
           animate="animate"
           custom={index}
-          style={{ fontSize }}
         >
           {letter === " " ? "\u00A0" : letter}
         </motion.span>

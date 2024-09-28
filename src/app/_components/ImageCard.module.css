@@ -8,3 +8,18 @@
   justify-content: center;
   border-radius: 1rem;
 }
+
+/* Media queries */
+@media (max-width: 1100px) {
+  .container {
+    height: 10rem;
+    width: 15rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    height: 7.5rem;
+    width: 10rem;
+  }
+}
