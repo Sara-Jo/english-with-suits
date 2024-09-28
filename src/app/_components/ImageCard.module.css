@@ -23,3 +23,10 @@
     width: 10rem;
   }
 }
+
+@media (max-width: 380px) {
+  .container {
+    height: 5rem;
+    width: 7.5rem;
+  }
+}
