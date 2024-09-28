@@ -22,10 +22,8 @@ export default function Home() {
 
   const buttonControls = useAnimation();
 
-  let [ref1, { height: height1 }] = useMeasure();
-  let [ref2, { height: height2 }] = useMeasure();
-  const yTranslation1 = useMotionValue(0);
-  const yTranslation2 = useMotionValue(0);
+  let [heightRef, { height }] = useMeasure();
+  const yTranslation = useMotionValue(0);
 
   const images1 = [
     "/image/home/S1/1.jpg",
@@ -80,9 +78,9 @@ export default function Home() {
 
   useEffect(() => {
     let controls;
-    let finalPosition1 = -height1 / 2 - 8;
+    let finalPosition1 = -height / 2 - 8;
 
-    controls = animate(yTranslation1, [0, finalPosition1], {
+    controls = animate(yTranslation, [0, finalPosition1], {
       ease: "linear",
       duration: 24,
       repeat: Infinity,
@@ -91,22 +89,7 @@ export default function Home() {
     });
 
     return controls.stop;
-  }, [yTranslation1, height1]);
-
-  useEffect(() => {
-    let controls;
-    let finalPosition2 = -height2 / 2 - 8;
-
-    controls = animate(yTranslation2, [0, finalPosition2], {
-      ease: "linear",
-      duration: 24,
-      repeat: Infinity,
-      repeatType: "loop",
-      repeatDelay: 0,
-    });
-
-    return controls.stop;
-  }, [yTranslation2, height2]);
+  }, [yTranslation, height]);
 
   useEffect(() => {
     if (isAnimationComplete) {
@@ -172,8 +155,8 @@ export default function Home() {
       <div className={styles.rightSide}>
         <motion.div
           className={`${styles.imageContainer} ${styles.imageContainerFirst}`}
-          ref={ref1}
-          style={{ y: yTranslation1 }}
+          ref={heightRef}
+          style={{ y: yTranslation }}
         >
           {[...images1, ...images1].map((item, idx) => (
             <ImageCard image={item} key={idx} />
@@ -182,8 +165,8 @@ export default function Home() {
 
         <motion.div
           className={`${styles.imageContainer} ${styles.imageContainerSecond}`}
-          ref={ref2}
-          style={{ y: yTranslation2 }}
+          ref={heightRef}
+          style={{ y: yTranslation }}
         >
           {[...images2, ...images2].map((item, idx) => (
             <ImageCard image={item} key={idx} />
