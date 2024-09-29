@@ -20,6 +20,12 @@
   align-items: center;
 }
 
+.loginButton {
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+}
+
 .titleWrapper {
   height: 100%;
   padding: 6rem;
