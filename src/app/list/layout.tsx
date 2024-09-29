@@ -5,9 +5,9 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import styles from "./layout.module.css";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "../auth/supabaseProvider";
-import Loading from "../_components/Loading";
+import Loading from "../_components/Loading/Loading";
 import { useState } from "react";
-import ConfirmModal from "../_components/ConfirmModal";
+import ConfirmModal from "../_components/ConfirmModal/ConfirmModal";
 import ThemeToggle from "../_components/ThemeToggle";
 import Link from "next/link";
 

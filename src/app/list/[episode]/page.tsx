@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { fetchEpisode } from "@/lib/fetchEpisode";
 import styles from "./page.module.css";
-import Description from "@/app/_components/Description";
+import Description from "@/app/_components/Description/Description";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
 
 export default async function Episode({

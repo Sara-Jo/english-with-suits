@@ -4,12 +4,12 @@ import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "./auth/supabaseProvider";
-import Loading from "./_components/Loading";
-import ConfirmModal from "./_components/ConfirmModal";
+import Loading from "./_components/Loading/Loading";
+import ConfirmModal from "./_components/ConfirmModal/ConfirmModal";
 import DoubleArrowRoundedIcon from "@mui/icons-material/DoubleArrowRounded";
-import TextAnimation from "./_components/TextAnimation";
+import TextAnimation from "./_components/TextAnimation/TextAnimation";
 import { animate, motion, useAnimation, useMotionValue } from "framer-motion";
-import ImageCard from "./_components/ImageCard";
+import ImageCard from "./_components/ImageCard/ImageCard";
 import useMeasure from "react-use-measure";
 import Link from "next/link";
 

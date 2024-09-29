@@ -4,9 +4,9 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import styles from "./layout.module.css";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "../auth/supabaseProvider";
-import Loading from "../_components/Loading";
+import Loading from "../_components/Loading/Loading";
 import { useState } from "react";
-import ConfirmModal from "../_components/ConfirmModal";
+import ConfirmModal from "../_components/ConfirmModal/ConfirmModal";
 import ThemeToggle from "../_components/ThemeToggle";
 
 export default function MyPageLayout({

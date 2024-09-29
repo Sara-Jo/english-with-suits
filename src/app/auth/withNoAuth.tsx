@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAuthContext } from "./supabaseProvider";
-import Loading from "../_components/Loading";
+import Loading from "../_components/Loading/Loading";
 
 console.log("withNoAuth module loaded");
 

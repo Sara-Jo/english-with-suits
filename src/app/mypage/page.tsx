@@ -6,7 +6,7 @@ import withAuth from "../auth/withAuth";
 import { fetchUserData } from "@/lib/fetchUserData";
 import { IExpression, IUser } from "@/lib/interface";
 import supabase from "../auth/supabaseClient";
-import Loading from "../_components/Loading";
+import Loading from "../_components/Loading/Loading";
 import { removeBookmark } from "@/lib/handleBookmark";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 import styles from "./page.module.css";
