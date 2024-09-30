@@ -7,7 +7,7 @@ import { useAuthContext } from "../auth/supabaseProvider";
 import Loading from "../_components/Loading/Loading";
 import { useState } from "react";
 import ConfirmModal from "../_components/ConfirmModal/ConfirmModal";
-import ThemeToggle from "../_components/ThemeToggle";
+import ThemeToggle from "../_components/ThemeToggle/ThemeToggle";
 
 export default function MyPageLayout({
   children,
