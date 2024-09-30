@@ -55,9 +55,9 @@ export default function Home() {
 
   useEffect(() => {
     let controls;
-    let finalPosition1 = -height / 2 - 8;
+    let finalPosition = -height / 2 - 8;
 
-    controls = animate(yTranslation, [0, finalPosition1], {
+    controls = animate(yTranslation, [0, finalPosition], {
       ease: "linear",
       duration: 24,
       repeat: Infinity,
