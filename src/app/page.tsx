@@ -13,6 +13,36 @@ import ImageCard from "./_components/ImageCard/ImageCard";
 import useMeasure from "react-use-measure";
 import Link from "next/link";
 
+const images1 = [
+  "/image/home/S1/1.jpg",
+  "/image/home/S1/2.jpg",
+  "/image/home/S1/3.jpg",
+  "/image/home/S1/4.jpg",
+  "/image/home/S1/5.jpg",
+  "/image/home/S1/6.jpg",
+  "/image/home/S1/7.jpg",
+  "/image/home/S1/8.jpg",
+  "/image/home/S1/9.jpg",
+  "/image/home/S1/10.jpg",
+  "/image/home/S1/11.jpg",
+  "/image/home/S1/12.jpg",
+];
+
+const images2 = [
+  "/image/home/S2/1.jpg",
+  "/image/home/S2/2.jpg",
+  "/image/home/S2/3.jpg",
+  "/image/home/S2/4.jpg",
+  "/image/home/S2/5.jpg",
+  "/image/home/S2/6.jpg",
+  "/image/home/S2/7.jpg",
+  "/image/home/S2/8.jpg",
+  "/image/home/S2/9.jpg",
+  "/image/home/S2/10.jpg",
+  "/image/home/S2/11.jpg",
+  "/image/home/S2/12.jpg",
+];
+
 export default function Home() {
   const router = useRouter();
   const { user, loading, signOut } = useAuthContext();
@@ -24,36 +54,6 @@ export default function Home() {
 
   let [heightRef, { height }] = useMeasure();
   const yTranslation = useMotionValue(0);
-
-  const images1 = [
-    "/image/home/S1/1.jpg",
-    "/image/home/S1/2.jpg",
-    "/image/home/S1/3.jpg",
-    "/image/home/S1/4.jpg",
-    "/image/home/S1/5.jpg",
-    "/image/home/S1/6.jpg",
-    "/image/home/S1/7.jpg",
-    "/image/home/S1/8.jpg",
-    "/image/home/S1/9.jpg",
-    "/image/home/S1/10.jpg",
-    "/image/home/S1/11.jpg",
-    "/image/home/S1/12.jpg",
-  ];
-
-  const images2 = [
-    "/image/home/S2/1.jpg",
-    "/image/home/S2/2.jpg",
-    "/image/home/S2/3.jpg",
-    "/image/home/S2/4.jpg",
-    "/image/home/S2/5.jpg",
-    "/image/home/S2/6.jpg",
-    "/image/home/S2/7.jpg",
-    "/image/home/S2/8.jpg",
-    "/image/home/S2/9.jpg",
-    "/image/home/S2/10.jpg",
-    "/image/home/S2/11.jpg",
-    "/image/home/S2/12.jpg",
-  ];
 
   const handleLogoutClick = () => {
     setShowLogoutModal(true);
