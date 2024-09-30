@@ -58,12 +58,12 @@
   justify-content: space-around;
 }
 
-.imageContainerFirst {
+.imageContainer1 {
   right: 20rem;
   top: 0;
 }
 
-.imageContainerSecond {
+.imageContainer2 {
   right: -2rem;
   top: 7rem;
 }

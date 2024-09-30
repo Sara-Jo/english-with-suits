@@ -15,11 +15,11 @@ import Link from "next/link";
 
 const images1 = Array.from(
   { length: 12 },
-  (_, i) => `image/home/S1/${i + 1}.jpg`
+  (_, i) => `/image/home/S1/${i + 1}.jpg`
 );
 const images2 = Array.from(
   { length: 12 },
-  (_, i) => `image/home/S2/${i + 1}.jpg`
+  (_, i) => `/image/home/S2/${i + 1}.jpg`
 );
 
 export default function Home() {
@@ -28,9 +28,7 @@ export default function Home() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [logoutLoading, setLogoutLoading] = useState(false);
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
-
   const buttonControls = useAnimation();
-
   let [heightRef, { height }] = useMeasure();
   const yTranslation = useMotionValue(0);
 
@@ -67,7 +65,7 @@ export default function Home() {
       repeatDelay: 0,
     });
 
-    return controls.stop;
+    return () => controls.stop();
   }, [yTranslation, height]);
 
   useEffect(() => {
@@ -132,25 +130,20 @@ export default function Home() {
       </div>
 
       <div className={styles.rightSide}>
-        <motion.div
-          className={`${styles.imageContainer} ${styles.imageContainerFirst}`}
-          ref={heightRef}
-          style={{ y: yTranslation }}
-        >
-          {[...images1, ...images1].map((item, idx) => (
-            <ImageCard image={item} key={idx} />
-          ))}
-        </motion.div>
-
-        <motion.div
-          className={`${styles.imageContainer} ${styles.imageContainerSecond}`}
-          ref={heightRef}
-          style={{ y: yTranslation }}
-        >
-          {[...images2, ...images2].map((item, idx) => (
-            <ImageCard image={item} key={idx} />
-          ))}
-        </motion.div>
+        {[images1, images2].map((images, index) => (
+          <motion.div
+            key={index}
+            className={`${styles.imageContainer} ${
+              styles[`imageContainer${index + 1}`]
+            }`}
+            ref={heightRef}
+            style={{ y: yTranslation }}
+          >
+            {[...images, ...images].map((item, idx) => (
+              <ImageCard image={item} key={idx} />
+            ))}
+          </motion.div>
+        ))}
       </div>
 
       {showLogoutModal && (
