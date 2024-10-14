@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useAuthContext } from "../auth/supabaseProvider";
-import withAuth from "../auth/withAuth";
 import { fetchUserData } from "@/lib/fetchUserData";
 import { IExpression, IUser } from "@/lib/interface";
 import supabase from "../auth/supabaseClient";
@@ -10,9 +8,10 @@ import Loading from "../_components/Loading/Loading";
 import { removeBookmark } from "@/lib/handleBookmark";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 import styles from "./page.module.css";
+import useAuth from "../auth/useAuth";
 
 function MyPage() {
-  const { user } = useAuthContext();
+  const { user } = useAuth();
   const [userData, setUserData] = useState<IUser | null>(null);
   const [bookmarkedExpressions, setBookmarkedExpressions] = useState<
     IExpression[]
@@ -109,4 +108,4 @@ function MyPage() {
   );
 }
 
-export default withAuth(MyPage);
+export default MyPage;
