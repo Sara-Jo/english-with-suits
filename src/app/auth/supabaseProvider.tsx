@@ -21,7 +21,7 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
-  signOut: async () => {},
+  signOut: () => Promise.resolve(),
 });
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
