@@ -37,7 +37,7 @@ export default function QuizClient({
   useEffect(() => {
     const trimmedStr: string =
       currentExpression?.en.replace(/[.,?!~]/g, "").trim() ?? "";
-    const wordList = trimmedStr.split(" ");
+    const wordList = trimmedStr.split(" ").filter((word) => word !== "");
     const answerArr = currentExpression?.en.match(/[\w'-]+|[.,?!~]/g) ?? [];
 
     setAnswer(answerArr);
